@@ -1,0 +1,61 @@
+.section-hero-banner {
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+    padding: 4em 2em;
+}
+
+.section-hero-banner a {
+    color: white;
+}
+
+.section-hero-banner h1 {
+    font-size: 3em;
+    font-weight: normal;
+    letter-spacing: 0.2em;
+}
+
+.section-hero-banner p {
+    max-width: 53ch;
+    text-align: center;
+    margin: 1em auto;
+}
+
+.section-hero-banner .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* 100% височина спрямо родителя */
+}
+
+.carousel-item {
+    height: auto;
+}
+
+.carousel-caption {
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачен фон на капшона */
+    width: 100%;
+    padding: 1em;
+    text-align: center;
+}
+
+.carousel-caption h1,
+.carousel-caption p {
+    color: white;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1); /* Обърнете стрелките за контрол на слайдовете на бяло */
+}
+
+@media (min-width: 768px) {
+    .carousel-caption {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50%;
+    }
+}

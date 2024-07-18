@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register User</title>
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="/css/styles/site.css">
+</head>
+<body class="register">
+<header>
+    <section th:replace="fragments/section-top-bar"></section>
+    <div th:replace="fragments/header"></div>
+</header>
+<div class="registerContainer">
+    <h2 class="text-center text-dark">Register User</h2>
+    <form th:method="POST"
+          th:action="@{/users/register}"
+          class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
+        <div class="row">
+            <div class="form-group col-md-6 mb-3">
+                <label for="firstName" class="text-dark font-weight-bold">First Name</label>
+                <input type="text" id="firstName" min="2" max="20" class="form-control"
+                       placeholder="First name"/>
+                <p class="errors alert alert-danger">
+                    First name is required.
+                </p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label for="lastName" class="text-dark font-weight-bold">Last Name</label>
+                <input type="text" id="lastName" min="2" max="20" class="form-control"
+                       placeholder="Last name"/>
+                <p class="errors alert alert-danger">
+                    Last name is required.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 mb-3">
+                <label for="email" class="text-dark font-weight-bold">Email</label>
+                <input type="email" id="email" min="2" max="20" class="form-control"
+                       placeholder="Email"/>
+                <p class="errors alert alert-danger">
+                    Email is required.
+                </p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label for="password" class="text-dark font-weight-bold">Password</label>
+                <input type="password" id="password" min="2" max="20" class="form-control"
+                       placeholder="Password"/>
+                <p class="errors alert alert-danger">
+                    Password is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="text-center text-dark font-weight-bold" for="roles">Roles</label>
+            <select id="roles" class="form-control" multiple>
+                <option></option>
+            </select>
+            <p class="errors alert alert-danger">
+                Selecting a role is required.
+            </p>
+        </div>
+        <div class="row">
+            <div class="col col-md-4">
+                <div class="button-holder d-flex">
+                    <input type="submit" class="btn btn-primary btn-lg" value="Submit Offer"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div>
+    <footer th:replace="fragments/footer"></footer>
+</div>
+</body>
+</html>

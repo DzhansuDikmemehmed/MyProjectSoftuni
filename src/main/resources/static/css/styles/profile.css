@@ -1,0 +1,108 @@
+/* Общи стилове */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+header {
+    background-color: #d01919;
+    color: white;
+    padding: 10px 0;
+}
+
+/*main {*/
+/*    background-color: #ffffff;*/
+/*    border-radius: 10px;*/
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+/*    margin: 20px auto;*/
+/*    max-width: 600px;*/
+/*    padding: 20px;*/
+/*}*/
+
+
+.profile-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.profile-card img {
+    border: 5px solid #d9cbcb;
+    border-radius: 50%;
+}
+
+.profile-card .text-center {
+    color: #333;
+}
+
+.profile-card .bg-secondary {
+    background-color: #d01919;
+}
+
+.profile-card h5 {
+    font-size: 1.25rem;
+    margin: 10px 0;
+}
+
+.profile-card span {
+    display: block;
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.profile-card .fonts {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #495057;
+}
+
+
+.social-list {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 20px 0;
+    list-style: none;
+}
+
+.social-list li {
+    padding: 10px;
+    color: #d01919;
+    font-size: 24px;
+    transition: color 0.3s;
+}
+
+.social-list li:hover {
+    color: #a00;
+}
+
+
+.buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.buttons button {
+    border: 1px solid #d01919;
+    color: #d01919;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    padding: 0 20px;
+    margin: 0 10px;
+    background-color: #b3003f;
+}
+
+.buttons button:hover {
+    background-color: #d01919;
+    color: #ffffff;
+    border-color: #d01919;
+}

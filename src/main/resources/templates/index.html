@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head"></head>
+<body>
+<section th:replace="fragments/section-top-bar"></section>
+<header
+        th:replace="fragments/header">
+
+</header>
+<!--<div class="section-hero-banner">-->
+<div id="carouselExampleIndicators" class="carousel slide">
+
+
+    <div class="carousel-indicators">
+
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="...">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>NO PAIN NO GAIN</h1>
+                    <p>Nice-looking body and powerful organism are interconnected and we can help you with both.</p>
+                    <p><a class="btn btn-lg btn-primary" href="https://my.pulsefit.bg/#/Login">Sign up today</a></p>
+                </div>
+            </div>
+
+        </div>
+        <div class="carousel-item">
+            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="...">
+            <div class="container">
+                <div class="carousel-caption text-start">
+                    <h1>NO PAIN NO GAIN</h1>
+                    <p class="opacity-75">Nice-looking body and powerful organism are interconnected and we can help you with both.</p>
+                    <p><a class="btn btn-lg btn-primary" href="https://pulsefit.bg/en">GET STARTED</a></p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="carousel-item">
+            <img src="https://images.unsplash.com/photo-1599058918144-1ffabb6ab9a0?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="...">
+            <div class="container">
+                <div class="carousel-caption text-start">
+                    <h1>NO PAIN NO GAIN</h1>
+                    <p>Nice-looking body and powerful organism are interconnected and we can help you with both..</p>
+                    <p><a class="btn btn-lg btn-primary" href="https://pulsefit.bg/en">GET STARTED</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="https://images.unsplash.com/photo-1536922246289-88c42f957773?q=80&w=1808&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="...">
+            <div class="container">
+                <div class="carousel-caption text-start">
+                    <h1>NO PAIN NO GAIN</h1>
+                    <p>Nice-looking body and powerful organism are interconnected and we can help you with both.9</p>
+                    <p><a class="btn btn-lg btn-primary" href="https://pulsefit.bg/en">GET STARTED</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<!--</div>-->
+
+
+<div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="section-features section-columns">
+        <div class="container">
+            <h3 class="section-header">Welcome <span></span></h3>
+            <div class="row" id="coaches-section">
+                <div class="col-lg-4">
+                    <img  width="140" height="140" src="https://images.unsplash.com/photo-1519311965067-36d3e5f33d39?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-circle" alt="...">
+                    <h2 class="fw-normal">Qualified Coaches</h2>
+                    <p>Our coaches have years of experience in various types of fitness and sports.</p>
+                    <p><a class="btn btn-secondary" href="https://pulsefit.bg/en/trainers">View details &raquo;</a></p>
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                    <img  width="140" height="140" src="https://images.unsplash.com/photo-1616279969856-759f316a5ac1?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-circle" alt="...">
+                    <h2 class="fw-normal">Individual Approach</h2>
+                    <p>Every client of GYM has a personalized program of training and nutrition.</p>
+                    <p><a class="btn btn-secondary" href="https://pulsefit.bg/en/activities">View details &raquo;</a></p>
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                    <img  width="140" height="140" src="https://images.unsplash.com/photo-1519505907962-0a6cb0167c73?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-circle" alt="...">
+                    <h2 class="fw-normal">Fitness Equipment</h2>
+                    <p>We cooperate with leading fitness equipment suppliers to give you the superior results.</p>
+                    <p><a class="btn btn-secondary" href="https://pulsefit.bg/en/pages/about-pulse">View details &raquo;</a></p>
+                </div><!-- /.col-lg-4 -->
+            </div><!-- /.row -->
+        </div>
+    </div>
+</div>
+<!-- START THE FEATURETTES -->
+
+<hr class="featurette-divider">
+<h1 class="text-center">Coaches:</h1>
+<div class="row featurette">
+    <div class="col-md-7">
+        <h2 class="featurette-heading fw-normal lh-1">Pepa Perkins
+            <span class="text-body-secondary">Fitness</span></h2>
+        <p class="lead">Emily can teach you all peculiarities of fitness and aerobics in a group or individually.</p>
+    </div>
+    <div class="col-md-5">
+        <img  class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"  alt="...">
+
+
+    </div>
+
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading fw-normal lh-1">Samantha Minela
+                <span class="text-body-secondary">Yoga</span></h2>
+            <p class="lead">Our leading yoga coach, Samantha will help you reach full harmony with your body.</p>
+        </div>
+        <div class="col-md-5 order-md-1">
+            <img  class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="https://images.unsplash.com/photo-1602276507500-600178f63aae?q=80&w=1087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"  alt="...">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading fw-normal lh-1">Austin Ortiz
+                <span class="text-body-secondary">Bodybuilding</span></h2>
+            <p class="lead">Austin is not only our most called-for coach, but also a winner of many championships.</p>
+        </div>
+        <div class="col-md-5">
+            <img  class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="https://images.unsplash.com/photo-1579758629938-03607ccdbaba?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"  alt="...">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+
+</div><!-- /.container -->
+<hr class="featurette-divider">
+<h1 class="text-center">Club privileges:</h1>
+<div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Online training
+            </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                For those who, for various reasons, do not have the opportunity to visit our sites, our unique online platform is the solution. She offers fitness classes suitable for any purpose - both live and recorded. The fitness classes are led by the best trainers in Bulgaria - professionals with a huge experience and hundreds of changed lives behind them!
+                <strong>Do not miss to take advantage of this unique service!</strong>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Specialized clinical center
+            </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                The latest generation clinic provides services in three main areas: detox, anti-stress and weight loss. Here you can find the most innovative technologies in the field of healthy living at the world level, as well as the best experts in dietetics, healthy eating and holistic. Enjoy accurate diagnosis, effective therapies and balanced treatment of the highest class with our specially designed programs for people who value their time. No matter how many days you stay here, the result will always be a total recharge of energy and the acquisition of healthy habits to change your life.
+                <strong>Do not miss to take advantage of this unique service!</strong>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Massage studios
+            </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                Massage is a must for optimal health, comfort and tone. We offer you a huge variety of procedures designed for everyone who wants to feel better in their skin. Here you can undergo a traditional, sports and exotic massage. The wide range of services also includes peeling, lifting, face and body mask and much more.
+                <strong>Do not miss to take advantage of this unique service!</strong>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFour">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                Food
+            </button>
+        </h2>
+        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                A healthy lifestyle consists of 3 elements: good training, full rest and of course - quality food. Healthy food that helps people live better and achieve their goals.
+                Culinary offers are available to everyone who trains or lives near the sites of our chain. You can eat at the place or consume the food at home.
+                Whether you're a keto dieter, vegan, vegetarian, or eating to gain muscle mass, there will be a huge variety of food options.
+                <strong>Do not miss to take advantage of this unique service!</strong>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<hr class="featurette-divider">
+<h1 class="text-center">Advantages:</h1>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-md-6 col-xl-3">
+            <div class="card shadow p-3 mb-5 bg-body rounded">
+                <img src="https://images.unsplash.com/photo-1610402601271-5b4bd5b3eba4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Spa areas with dozens of facilities</h5>
+                    <p class="card-text text-primary" >Here you will enjoy a wide range of the most modern facilities, relaxation areas and spa treatments that will erase fatigue and refresh every cell in your body.</p>
+                    <a href="https://pulsefit.bg/en/spa" class="btn btn-primary">Take a look</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-3">
+            <div class="card shadow p-3 mb-5 bg-body rounded">
+                <img src="https://images.unsplash.com/photo-1604063155785-ee4488b8ad15?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Convenient parking lots with car washes</h5>
+                    <p class="card-text text-primary">Never again waste time and nerves in long journeys and tedious waiting to wash your car. Trust our specialists and modern equipment, who work with 100% safe preparations and professional efficiency. While you train, we take care of your car.</p>
+                    <a href="https://pulsefit.bg/en/extras/car-wash.html" class="btn btn-primary">Take a look</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3">
+            <div class="card shadow p-3 mb-5 bg-body rounded">
+                <img src="https://images.unsplash.com/photo-1614667288602-9ac6e37318a7?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Indoor and outdoor pool</h5>
+                    <p class="card-text text-primary">The indoor swimming pool is 25 m long and 1.6 to 1.80 m deep, divided into several swimming corridors. The water in the pool is purified with special German organic preparations, and the temperature is maintained at 27°C.
+                        The outdoor swimming pool is 25 meters long and 1.6/1.8 meters deep, our pool is ideal both for casual relaxation on hot summer days and for crawling competitions.</p>
+                    <a href="https://pulsefit.bg/en/pulse-fitness-spa-bulgaria-en/zones/indoor-pool-pulsebulgaria" class="btn btn-primary">Take a look</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3">
+            <div class="card shadow p-3 mb-5 bg-body rounded">
+                <img src="https://images.unsplash.com/photo-1542719069-e41dc4429159?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Free solarium for club members</h5>
+                    <p class="card-text text-primary">Imagine how much better you will feel if, after an exhausting but rewarding workout, you spend a few more minutes of your time in our ultra-modern turbo-solariums. They are fast, efficient, well cooled and completely safe, and the result is 101% more confidence when you leave the club. You'll give yourself not just a bronze tan, but the confidence you deserve.</p>
+                    <a href="https://pulsefit.bg/en/extras/solarium-1.html" class="btn btn-primary">Take a look</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<footer th:replace="fragments/footer">
+
+
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
