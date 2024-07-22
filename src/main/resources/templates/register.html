@@ -46,24 +46,43 @@
                     Email is required.
                 </p>
             </div>
-            <div class="form-group col-md-6 mb-3">
-                <label for="password" class="text-dark font-weight-bold">Password</label>
-                <input type="password" id="password" min="2" max="20" class="form-control"
-                       placeholder="Password"/>
-                <p class="errors alert alert-danger">
-                    Password is required.
-                </p>
-            </div>
+
         </div>
         <div class="form-group">
-            <label class="text-center text-dark font-weight-bold" for="roles">Roles</label>
-            <select id="roles" class="form-control" multiple>
-                <option></option>
-            </select>
+            <label class="text-center text-dark font-weight-bold" for="selectLevel">Level</label>
+            <div class="col-auto">
+                <select name="level"
+                        type="number"
+                        id="selectLevel"
+                        class="form-control">
+                    <!--                        th:field="*{level}"-->
+
+
+                    <option th:each="levelOption: ${level}"
+                            th:value="${levelOption}"
+                            th:text="${levelOption}"
+                    ></option>
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-md-6 mb-3">
+            <label for="password" class="text-dark font-weight-bold">Password</label>
+            <input type="password" id="password" min="2" max="20" class="form-control"
+                   placeholder="Password"/>
             <p class="errors alert alert-danger">
-                Selecting a role is required.
+                Password is required.
             </p>
         </div>
+        <div class="form-group col-md-6 mb-3">
+            <label for="confirmPassword" class="text-dark font-weight-bold">Confirm Password</label>
+            <input type="password" id="confirmPassword" min="2" max="20" class="form-control"
+                   placeholder="Confirm Password"/>
+            <p class="errors alert alert-danger">
+                Password is required.
+            </p>
+        </div>
+
         <div class="row">
             <div class="col col-md-4">
                 <div class="button-holder d-flex">
