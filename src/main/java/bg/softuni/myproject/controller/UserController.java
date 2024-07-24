@@ -3,6 +3,7 @@ package bg.softuni.myproject.controller;
 
 import bg.softuni.myproject.model.entity.Level;
 import bg.softuni.myproject.service.UserService;
+import bg.softuni.myproject.service.dto.UserLoginDto;
 import bg.softuni.myproject.service.dto.UserRegistrationDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,13 @@ public class UserController {
         return new UserRegistrationDto();
     }
 
+    @ModelAttribute("loginData")
+    public UserLoginDto loginDto(){
+        return new UserLoginDto();
+    }
+
+
+
     @GetMapping("/register")
     public String viewRegister(Model model){
         model.addAttribute("level", Level.values());
@@ -37,6 +45,12 @@ public class UserController {
     public String register(UserRegistrationDto userRegistrationDto){
         userService.registerUser(userRegistrationDto);
         return "redirect:/";
+    }
+
+
+    @GetMapping("/login")
+    public String viewLogin(){
+        return "login";
     }
 
 
