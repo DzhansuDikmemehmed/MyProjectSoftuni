@@ -7,15 +7,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 
 @Configuration
-public class Config {
+public class AppConfig {
 
     @Bean
     public ModelMapper modelMapper(){
         return new ModelMapper();
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return  Pbkdf2PasswordEncoder.defaultsForSpringSecurity_v5_8();
-    }
+
 }
