@@ -13,6 +13,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    private Integer age;
     @Column(name = "full_name", nullable = false)
     private String fullName;
     @Column(unique = true)
@@ -37,6 +38,15 @@ public class User {
 
     public User setId(long id) {
         this.id = id;
+        return this;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public User setAge(Integer age) {
+        this.age = age;
         return this;
     }
 

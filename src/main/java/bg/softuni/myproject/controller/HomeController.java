@@ -12,10 +12,7 @@ public class HomeController {
     }
 
 
-    @GetMapping("/register")
-    public String viewRegister(){
-        return "register";
-    }
+
 
     @GetMapping("/about")
     public String viewAbout(){
