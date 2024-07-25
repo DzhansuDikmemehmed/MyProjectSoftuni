@@ -1,5 +1,6 @@
 package bg.softuni.myproject.model.entity;
 
+import bg.softuni.myproject.model.entity.enums.Level;
 import jakarta.persistence.*;
 
 import java.util.HashSet;

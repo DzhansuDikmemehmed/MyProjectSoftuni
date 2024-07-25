@@ -1,0 +1,93 @@
+/* General Styles */
+body.register {
+    background: url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed !important;
+    background-size: cover !important;
+    color: #D01919;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Container Styles */
+.registerContainer {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    border: 2px solid #D01919;
+}
+
+/* Typography */
+h2.text-center {
+    text-align: center;
+    color: #343a40;
+    margin-bottom: 30px;
+}
+
+.font-weight-bold {
+    font-weight: bold;
+}
+
+/* Form Styles */
+.main-form .form-group {
+    margin-bottom: 20px;
+}
+
+.main-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #343a40;
+}
+
+.main-form .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+.main-form .form-control:focus {
+    border-color: #D01919;
+    outline: 0;
+    box-shadow: 0 0 5px rgba(231, 28, 74, 0.5);
+}
+
+.errors {
+    display: none; /* Hide by default, show only when needed */
+}
+
+/* Button Styles */
+.button-holder {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #D01919;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #b3003f;
+}
+
+/* Footer Styles */
+footer {
+    margin-top: auto;
+    background-color: #343a40;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}

@@ -1,7 +1,7 @@
 package bg.softuni.myproject.controller;
 
 
-import bg.softuni.myproject.model.entity.Level;
+import bg.softuni.myproject.model.entity.enums.Level;
 import bg.softuni.myproject.service.UserService;
 import bg.softuni.myproject.service.dto.UserLoginDto;
 import bg.softuni.myproject.service.dto.UserRegistrationDto;

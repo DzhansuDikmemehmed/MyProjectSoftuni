@@ -1,6 +1,6 @@
 package bg.softuni.myproject.service.dto;
 
-import bg.softuni.myproject.model.entity.Level;
+import bg.softuni.myproject.model.entity.enums.Level;
 import jakarta.validation.constraints.*;
 
 public class UserRegistrationDto {

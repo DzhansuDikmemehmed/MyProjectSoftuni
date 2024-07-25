@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Appointment</title>
+    <link rel="stylesheet" href="/css/styles/site.css">
+</head>
+<body class="register">
+<header>
+    <section th:replace="fragments/section-top-bar"></section>
+    <div th:replace="fragments/header"></div>
+</header>
+<div class="registerContainer">
+    <h2 class="text-center text-dark">Add Appointment</h2>
+    <form th:method="POST"
+          th:action="@{/add-appointment}"
+          th:object="${appointmentData}"
+          class="main-form mx-auto" novalidate>
+        <div class="form-group mb-3">
+            <label for="imageUrl" class="font-weight-bold">Image URL</label>
+            <input
+                    th:field="*{imageUrl}"
+                    type="text" id="imageUrl" class="form-control"
+                    placeholder="Image URL" required/>
+            <small class="text-danger" th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}"></small>
+        </div>
+        <div class="form-group mb-3">
+            <label for="coachName" class="font-weight-bold">Coach Name</label>
+            <input
+                    th:field="*{coachName}"
+                    type="text" id="coachName" class="form-control"
+                    placeholder="Coach Name" required/>
+            <small class="text-danger" th:if="${#fields.hasErrors('coachName')}" th:errors="*{coachName}"></small>
+        </div>
+        <div class="form-group mb-3">
+            <label for="type" class="font-weight-bold">Training Type</label>
+            <select
+                    th:field="*{type}"
+                    id="type"
+                    class="form-control" required>
+                <option th:each="type : ${allTrainingTypes}"
+                        th:value="${type}"
+                        th:text="${type}"></option>
+            </select>
+            <small class="text-danger" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></small>
+        </div>
+        <div class="form-group mb-3">
+            <label for="description" class="font-weight-bold">Description</label>
+            <textarea
+                    th:field="*{description}"
+                    id="description" rows="4" class="form-control"
+                    placeholder="Description" required></textarea>
+            <small class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></small>
+        </div>
+        <div class="form-group mb-3">
+            <label for="appointmentDateTime" class="font-weight-bold">Appointment Date & Time</label>
+            <input
+                    th:field="*{appointmentDateTime}"
+                    type="datetime-local" id="appointmentDateTime" class="form-control" required/>
+            <small class="text-danger" th:if="${#fields.hasErrors('appointmentDateTime')}" th:errors="*{appointmentDateTime}"></small>
+        </div>
+        <div class="form-group mb-3">
+            <label for="price" class="font-weight-bold">Price</label>
+            <input
+                    th:field="*{price}"
+                    type="number" id="price" step="0.01" class="form-control"
+                    placeholder="Price" min="0" required/>
+            <small class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></small>
+        </div>
+        <div class="form-group mb-3">
+            <label for="durationMinutes" class="font-weight-bold">Duration (Minutes)</label>
+            <input
+                    th:field="*{durationMinutes}"
+                    type="number" id="durationMinutes" class="form-control"
+                    placeholder="Duration in minutes" min="1" required/>
+            <small class="text-danger" th:if="${#fields.hasErrors('durationMinutes')}" th:errors="*{durationMinutes}"></small>
+        </div>
+        <div class="form-group mb-3">
+            <label for="maxParticipants" class="font-weight-bold">Max Participants</label>
+            <input
+                    th:field="*{maxParticipants}"
+                    type="number" id="maxParticipants" class="form-control"
+                    placeholder="Max Participants" min="1" required/>
+            <small class="text-danger" th:if="${#fields.hasErrors('maxParticipants')}" th:errors="*{maxParticipants}"></small>
+        </div>
+        <div class="form-group mb-3">
+            <label for="status" class="font-weight-bold">Status</label>
+            <select
+                    th:field="*{status}"
+                    id="status"
+                    class="form-control" required>
+                <option th:each="status : ${allStatusTypes}"
+                        th:value="${status}"
+                        th:text="${status}"></option>
+            </select>
+            <small class="text-danger" th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></small>
+        </div>
+        <div class="button-holder">
+            <input type="submit" class="btn btn-primary btn-lg" value="Submit"/>
+        </div>
+    </form>
+</div>
+<footer th:replace="fragments/footer"></footer>
+</body>
+</html>
