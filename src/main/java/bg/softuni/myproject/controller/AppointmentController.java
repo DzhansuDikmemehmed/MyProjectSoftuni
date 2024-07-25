@@ -54,4 +54,14 @@ public class AppointmentController {
     }
 
 
+    @GetMapping("/appointments/all")
+    public String getAllAppointments(Model model){
+
+        model.addAttribute("allAppointments", appointmentService.getAllAppointments());
+
+        return "appointments-all";
+    }
+
+
+
 }

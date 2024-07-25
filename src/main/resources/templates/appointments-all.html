@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Appointments</title>
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/appointments.css"/> <!-- Include the custom CSS file -->
+    <script src="/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/styles/site.css">
+
+</head>
+
+<body class="allAppointments">
+<header>
+    <section th:replace="fragments/section-top-bar"></section>
+    <div th:replace="fragments/header"></div></header>
+
+<div class="container-fluid">
+    <h2 class="text-center text-dark mt-5">All Appointments</h2>
+    <div class="appointments row mx-auto d-flex flex-row justify-content-center">
+        <div th:each="appointment : ${allAppointments}" class="appointment card col-sm-6 col-md-3 col-lg-2 m-1 p-0">
+            <div class="card-img-top-wrapper">
+                <img class="card-img-top" th:src="${appointment.imageUrl}" alt="Appointment image">
+            </div>
+            <div class="card-body pb-1">
+                <h5 class="card-title" th:text="${appointment.coachName}">Coach Name</h5>
+            </div>
+            <ul class="appointment-details list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="card-text">• Date & Time: <span th:text="${appointment.appointmentDateTime}"></span></div>
+                    <div class="card-text">• Price: <span th:text="${appointment.price}"></span></div>
+                    <div class="card-text">• Type: <span th:text="${appointment.type}"></span></div>
+                </li>
+            </ul>
+            <div class="card-body">
+                <a class="card-link" th:href="@{/appointments/{id}(id=${appointment.id})}">Details</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+
+</html>
