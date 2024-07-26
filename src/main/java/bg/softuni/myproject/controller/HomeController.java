@@ -30,4 +30,9 @@ public class HomeController {
     public String viewProfile(){
         return "profile";
     }
+
+//    @GetMapping("/details")
+//    public String viewDetails(){
+//        return "details";
+//    }
 }

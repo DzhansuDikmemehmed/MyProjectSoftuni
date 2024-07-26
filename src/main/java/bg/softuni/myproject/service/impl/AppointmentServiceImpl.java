@@ -5,10 +5,13 @@ import bg.softuni.myproject.repo.AppointmentRepository;
 import bg.softuni.myproject.service.AppointmentService;
 import bg.softuni.myproject.service.dto.AddAppointmentDto;
 import bg.softuni.myproject.service.dto.AllAppointmentsDto;
+import bg.softuni.myproject.service.dto.DetailsAppointmentDto;
+import org.hibernate.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,6 +40,7 @@ public class AppointmentServiceImpl implements AppointmentService {
                 .stream()
                 .map(appointment -> {
                     AllAppointmentsDto dto = new AllAppointmentsDto();
+                    dto.setId(appointment.getId());
                     dto.setImageUrl(appointment.getImageUrl());
                     dto.setCoachName(appointment.getCoachName());
                     dto.setType(appointment.getType());
@@ -47,6 +51,15 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     }
 
+    @Override
+    public DetailsAppointmentDto getAppointmentDetails(Long id) {
+        Optional<Appointment> appointmentOptional = appointmentRepository.findById(id);
+        if (appointmentOptional.isEmpty()) {
+            throw new ObjectNotFoundException("Appointment not found!", id);
+        }
+
+        return modelMapper.map(appointmentOptional.get(), DetailsAppointmentDto.class);
+    }
 
 
 }

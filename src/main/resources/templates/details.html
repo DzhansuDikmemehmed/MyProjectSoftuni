@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Details</title>
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/details.css"/> <!-- Include the custom CSS file -->
+    <script src="/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/styles/site.css">
+</head>
+
+<body class="appointmentDetails">
+<header>
+    <section th:replace="fragments/section-top-bar"></section>
+    <div th:replace="fragments/header"></div>
+</header>
+
+<div class="container-fluid">
+    <h2 class="text-center text-dark mt-5">Appointment Details</h2>
+    <div class="appointment card mx-auto p-0">
+        <div class="card-img-top-wrapper">
+            <img class="card-img-top" th:src="${appointmentDetails.imageUrl}" alt="Appointment image">
+        </div>
+        <div class="card-body">
+            <h5 class="card-title" th:text="${appointmentDetails.coachName}">Coach Name</h5>
+            <ul class="appointment-details list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="card-text">• Date & Time: <span th:text="${appointmentDetails.appointmentDateTime}"></span></div>
+                    <div class="card-text">• Price: <span th:text="${appointmentDetails.price}"></span></div>
+                    <div class="card-text">• Duration: <span th:text="${appointmentDetails.durationMinutes} + ' minutes'"></span></div>
+                    <div class="card-text">• Max Participants: <span th:text="${appointmentDetails.maxParticipants}"></span></div>
+                    <div class="card-text">• Remaining Spots: <span th:text="${appointmentDetails.remainingSpots}"></span></div>
+                    <div class="card-text">• Description: <span th:text="${appointmentDetails.description}"></span></div>
+                    <div class="card-text">• Status: <span th:text="${appointmentDetails.status}"></span></div>
+                </li>
+            </ul>
+
+            <div class="card-body">
+                <a class="card-link" href="/">Update</a>
+
+                <form
+                        th:method="delete"
+                        th:action="@{/appointments/{id}(id=*{appointmentDetails.id})}">
+                    <input class="btn btn-link"  type="submit" value="Delete"/>
+
+                </form>
+            </div>
+            <div class="card-body">
+                <a class="btn btn-primary" th:href="@{/appointments/update/{id}(id=${appointmentDetails.id})}">Update</a>
+                <form th:method="post" th:action="@{/appointments/delete/{id}(id=${appointmentDetails.id})}">
+                    <input class="btn btn-danger" type="submit" value="Delete"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="fragments/footer">
+
+</footer>
+
+</body>
+
+</html>
