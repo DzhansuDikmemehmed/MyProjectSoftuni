@@ -9,9 +9,8 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/main.css"/>
     <link rel="stylesheet" type="text/css" href="/css/details.css"/> <!-- Include the custom CSS file -->
-    <script src="/js/jquery-3.5.1.slim.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/css/styles/site.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body class="appointmentDetails">
@@ -33,37 +32,90 @@
                     <div class="card-text">• Date & Time: <span th:text="${appointmentDetails.appointmentDateTime}"></span></div>
                     <div class="card-text">• Price: <span th:text="${appointmentDetails.price}"></span></div>
                     <div class="card-text">• Duration: <span th:text="${appointmentDetails.durationMinutes} + ' minutes'"></span></div>
-                    <div class="card-text">• Max Participants: <span th:text="${appointmentDetails.maxParticipants}"></span></div>
-                    <div class="card-text">• Remaining Spots: <span th:text="${appointmentDetails.remainingSpots}"></span></div>
+                    <div class="card-text">• Max Participants: <span id="maxParticipants" th:text="${appointmentDetails.maxParticipants}"></span></div>
+                    <div class="card-text">• Remaining Spots: <span id="remainingSpots" th:text="${appointmentDetails.remainingSpots}"></span></div>
                     <div class="card-text">• Description: <span th:text="${appointmentDetails.description}"></span></div>
-                    <div class="card-text">• Status: <span th:text="${appointmentDetails.status}"></span></div>
+                    <div class="card-text">• Status: <span id="appointmentStatus" th:text="${appointmentDetails.status}"></span></div>
                 </li>
             </ul>
 
-            <div class="card-body">
-                <a class="card-link" href="/">Update</a>
-
-                <form
-                        th:method="delete"
-                        th:action="@{/appointments/{id}(id=*{appointmentDetails.id})}">
-                    <input class="btn btn-link"  type="submit" value="Delete"/>
-
-                </form>
+            <div class="card-body btn-container">
+                <button id="registerBtn" class="btn btn-primary">Register</button>
+                <button id="unregisterBtn" class="btn btn-secondary">Unregister</button>
             </div>
-            <div class="card-body">
-                <a class="btn btn-primary" th:href="@{/appointments/update/{id}(id=${appointmentDetails.id})}">Update</a>
-                <form th:method="post" th:action="@{/appointments/delete/{id}(id=${appointmentDetails.id})}">
-                    <input class="btn btn-danger" type="submit" value="Delete"/>
+
+            <div class="card-body d-flex justify-content-between">
+                <a class="btn btn-update btn-action" th:href="@{/appointments/update/{id}(id=${appointmentDetails.id})}">
+                    <i class="fas fa-edit"></i> Update
+                </a>
+                <form th:method="post" th:action="@{/appointments/delete/{id}(id=${appointmentDetails.id})}" class="mb-0">
+                    <button class="btn btn-delete btn-action" type="submit">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-<footer th:replace="fragments/footer">
+<footer th:replace="fragments/footer"></footer>
 
-</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const registerBtn = document.getElementById('registerBtn');
+        const unregisterBtn = document.getElementById('unregisterBtn');
+        const remainingSpotsElement = document.getElementById('remainingSpots');
+        const statusElement = document.getElementById('appointmentStatus');
+        const maxParticipantsElement = document.getElementById('maxParticipants');
 
+        let remainingSpots = parseInt(remainingSpotsElement.innerText, 10);
+        const status = statusElement.innerText.trim();
+        const maxParticipants = parseInt(maxParticipantsElement.innerText, 10);
+        const appointmentId = [[${appointmentDetails.id}]]; // Thymeleaf expression to inject the appointment ID
+
+        // Show or hide buttons based on status and remaining spots
+        if (status === 'ACTIVE') {
+            if (remainingSpots > 0) {
+                registerBtn.style.display = 'inline-block';
+            }
+            if (remainingSpots < maxParticipants) {
+                unregisterBtn.style.display = 'inline-block';
+            }
+        }
+
+        // Handle register button click
+        registerBtn.addEventListener('click', () => {
+            fetch(`/appointments/register/${appointmentId}`, {
+                method: 'POST'
+            }).then(response => {
+                if (response.ok) {
+                    remainingSpots--;
+                    remainingSpotsElement.innerText = remainingSpots;
+                    registerBtn.style.display = 'none';
+                    unregisterBtn.style.display = 'inline-block';
+                } else {
+                    alert('Failed to register.');
+                }
+            });
+        });
+
+        // Handle unregister button click
+        unregisterBtn.addEventListener('click', () => {
+            fetch(`/appointments/unregister/${appointmentId}`, {
+                method: 'POST'
+            }).then(response => {
+                if (response.ok) {
+                    remainingSpots++;
+                    remainingSpotsElement.innerText = remainingSpots;
+                    unregisterBtn.style.display = 'none';
+                    registerBtn.style.display = 'inline-block';
+                } else {
+                    alert('Failed to unregister.');
+                }
+            });
+        });
+    });
+</script>
 </body>
 
 </html>
