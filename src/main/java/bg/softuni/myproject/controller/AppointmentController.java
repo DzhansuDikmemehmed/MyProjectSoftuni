@@ -5,6 +5,8 @@ import bg.softuni.myproject.model.entity.enums.TrainingType;
 import bg.softuni.myproject.service.AppointmentService;
 import bg.softuni.myproject.service.dto.AddAppointmentDto;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -70,6 +72,28 @@ public class AppointmentController {
         model.addAttribute("appointmentDetails", appointmentService.getAppointmentDetails(id));
 
         return "details";
+    }
+
+    @PostMapping("/register/{id}")
+    public ResponseEntity<?> registerForAppointment(@PathVariable("id") Long id){
+        boolean result = appointmentService.registerForAppointment(id);
+
+        if (result){
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to register.");
+        }
+    }
+
+    @PostMapping("/unregister/{id}")
+    public ResponseEntity<?> unregisterForAppointment(@PathVariable("id") Long id){
+        boolean result = appointmentService.unregisterFromAppointment(id);
+
+        if (result){
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to unregister.");
+        }
     }
 
 

@@ -14,4 +14,8 @@ public interface AppointmentService {
 
     DetailsAppointmentDto getAppointmentDetails(Long id);
 
+    boolean registerForAppointment(Long appointmentId);
+
+    boolean unregisterFromAppointment(Long appointmentId);
+
 }

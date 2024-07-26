@@ -1,6 +1,7 @@
 package bg.softuni.myproject.service.impl;
 
 import bg.softuni.myproject.model.entity.Appointment;
+import bg.softuni.myproject.model.entity.enums.AppointmentStatus;
 import bg.softuni.myproject.repo.AppointmentRepository;
 import bg.softuni.myproject.service.AppointmentService;
 import bg.softuni.myproject.service.dto.AddAppointmentDto;
@@ -29,7 +30,10 @@ public class AppointmentServiceImpl implements AppointmentService {
     public Long createAppointment(AddAppointmentDto addAppointmentDto) {
 
         Appointment mappedApp = modelMapper.map(addAppointmentDto, Appointment.class);
-      return   appointmentRepository.save(mappedApp).getId();
+        mappedApp.setRemainingSpots(addAppointmentDto.getMaxParticipants());
+
+
+        return   appointmentRepository.save(mappedApp).getId();
 
     }
 
@@ -58,7 +62,33 @@ public class AppointmentServiceImpl implements AppointmentService {
             throw new ObjectNotFoundException("Appointment not found!", id);
         }
 
-        return modelMapper.map(appointmentOptional.get(), DetailsAppointmentDto.class);
+        DetailsAppointmentDto dto = modelMapper.map(appointmentOptional.get(), DetailsAppointmentDto.class);
+        dto.setRemainingSpots(appointmentOptional.get().getRemainingSpots());
+        return dto;    }
+
+    @Override
+    public boolean registerForAppointment(Long appointmentId) {
+        Appointment appointment =  appointmentRepository.findById(appointmentId).orElse(null);
+
+        if (appointment != null && appointment.getStatus() == AppointmentStatus.ACTIVE && appointment.getRemainingSpots()>0){
+
+            appointment.setRemainingSpots(appointment.getRemainingSpots()-1);
+            appointmentRepository.save(appointment);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean unregisterFromAppointment(Long appointmentId) {
+        Appointment appointment = appointmentRepository.findById(appointmentId).orElse(null);
+
+        if (appointment != null && appointment.getStatus() == AppointmentStatus.ACTIVE) {
+            appointment.setRemainingSpots(appointment.getRemainingSpots() + 1);
+            appointmentRepository.save(appointment);
+            return true;
+        }
+        return false;
     }
 
 

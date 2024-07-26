@@ -47,8 +47,19 @@ public class Appointment {
     @Enumerated(EnumType.STRING)
     private AppointmentStatus status;
 
+    @Positive
+    private int remainingSpots;
 
     public Appointment() {
+    }
+
+    public int getRemainingSpots() {
+        return remainingSpots;
+    }
+
+    public Appointment setRemainingSpots(int remainingSpots) {
+        this.remainingSpots = remainingSpots;
+        return this;
     }
 
     public Long getId() {

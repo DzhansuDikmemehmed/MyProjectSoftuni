@@ -61,7 +61,8 @@
 <footer th:replace="fragments/footer"></footer>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
+
+        document.addEventListener('DOMContentLoaded', () => {
         const registerBtn = document.getElementById('registerBtn');
         const unregisterBtn = document.getElementById('unregisterBtn');
         const remainingSpotsElement = document.getElementById('remainingSpots');
@@ -75,47 +76,48 @@
 
         // Show or hide buttons based on status and remaining spots
         if (status === 'ACTIVE') {
-            if (remainingSpots > 0) {
-                registerBtn.style.display = 'inline-block';
-            }
-            if (remainingSpots < maxParticipants) {
-                unregisterBtn.style.display = 'inline-block';
-            }
-        }
+        if (remainingSpots > 0) {
+        registerBtn.style.display = 'inline-block';
+    }
+        if (remainingSpots < maxParticipants) {
+        unregisterBtn.style.display = 'inline-block';
+    }
+    }
 
         // Handle register button click
         registerBtn.addEventListener('click', () => {
-            fetch(`/appointments/register/${appointmentId}`, {
-                method: 'POST'
-            }).then(response => {
-                if (response.ok) {
-                    remainingSpots--;
-                    remainingSpotsElement.innerText = remainingSpots;
-                    registerBtn.style.display = 'none';
-                    unregisterBtn.style.display = 'inline-block';
-                } else {
-                    alert('Failed to register.');
-                }
-            });
-        });
+        fetch(`/appointments/register/${appointmentId}`, {
+        method: 'POST'
+    }).then(response => {
+        if (response.ok) {
+        remainingSpots--;
+        remainingSpotsElement.innerText = remainingSpots;
+        registerBtn.style.display = 'none';
+        unregisterBtn.style.display = 'inline-block';
+    } else {
+        alert('Failed to register.');
+    }
+    });
+    });
 
         // Handle unregister button click
         unregisterBtn.addEventListener('click', () => {
-            fetch(`/appointments/unregister/${appointmentId}`, {
-                method: 'POST'
-            }).then(response => {
-                if (response.ok) {
-                    remainingSpots++;
-                    remainingSpotsElement.innerText = remainingSpots;
-                    unregisterBtn.style.display = 'none';
-                    registerBtn.style.display = 'inline-block';
-                } else {
-                    alert('Failed to unregister.');
-                }
-            });
-        });
+        fetch(`/appointments/unregister/${appointmentId}`, {
+        method: 'POST'
+    }).then(response => {
+        if (response.ok) {
+        remainingSpots++;
+        remainingSpotsElement.innerText = remainingSpots;
+        unregisterBtn.style.display = 'none';
+        registerBtn.style.display = 'inline-block';
+    } else {
+        alert('Failed to unregister.');
+    }
+    });
+    });
     });
 </script>
+
 </body>
 
 </html>
