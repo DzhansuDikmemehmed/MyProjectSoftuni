@@ -18,4 +18,6 @@ public interface AppointmentService {
 
     boolean unregisterFromAppointment(Long appointmentId);
 
+    void deleteAppointment(long appointmentId);
+
 }
