@@ -7,10 +7,31 @@ public class UserProfileDto {
     private String imageUrl;
     private String username;
 
+    private String fullName;
+
     private int age;
     private Level level;
 
+    private String description;
     public UserProfileDto() {
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public UserProfileDto setFullName(String fullName) {
+        this.fullName = fullName;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public UserProfileDto setDescription(String description) {
+        this.description = description;
+        return this;
     }
 
     public String getImageUrl() {

@@ -59,7 +59,7 @@
 
         </div>
         <div class="form-group">
-            <label class="text-center text-dark font-weight-bold" for="selectLevel">Level</label>
+            <label class="text-dark font-weight-bold" for="selectLevel">Level</label>
             <div class="col-auto">
                 <select
                         th:field="*{level}"
@@ -91,6 +91,17 @@
             <p class="errors alert alert-danger">
                 Password is required.
             </p>
+        </div>
+
+        <div class="form-group col-md-6 mb-3">
+            <label for="description" class="text-dark font-weight-bold">Description</label>
+            <input
+                    th:field="*{description}"
+                    type="text" id="description"
+                    class="form-control"
+                    placeholder="Description"
+                    aria-describedby="ageHelperInLine"/>
+
         </div>
         <div class="form-group col-md-6 mb-3">
             <label for="password" class="text-dark font-weight-bold">Password</label>

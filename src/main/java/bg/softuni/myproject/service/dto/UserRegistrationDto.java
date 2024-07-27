@@ -26,6 +26,8 @@ public class UserRegistrationDto {
 
     private Level level;
 
+    private String description;
+
 
     public UserRegistrationDto() {
     }
@@ -36,6 +38,15 @@ public class UserRegistrationDto {
 
     public UserRegistrationDto setUsername(String username) {
         this.username = username;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public UserRegistrationDto setDescription(String description) {
+        this.description = description;
         return this;
     }
 

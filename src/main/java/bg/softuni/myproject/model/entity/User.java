@@ -29,8 +29,18 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
+    private String description;
     public User() {
         this.roles = new HashSet<>();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public User setDescription(String description) {
+        this.description = description;
+        return this;
     }
 
     public long getId() {
