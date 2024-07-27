@@ -72,3 +72,31 @@
 
 
 
+/* Button Styles */
+.btn-logout {
+    background: linear-gradient(145deg, #dc3545, #c82333); /* Gradient background */
+    color: #fff; /* White text color */
+    border: none; /* Remove default border */
+    padding: 10px 20px; /* Padding inside the button */
+    font-size: 16px; /* Font size */
+    font-weight: bold; /* Bold text */
+    border-radius: 8px; /* More rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s; /* Smooth transitions */
+}
+
+.btn-logout:hover {
+    background: linear-gradient(145deg, #c82333, #dc3545); /* Inverted gradient on hover */
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+.btn-logout:focus {
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.6); /* Custom focus ring */
+}
+
+.logout-form {
+    display: inline; /* Inline form to fit in the navigation bar */
+}
