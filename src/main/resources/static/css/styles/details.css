@@ -17,7 +17,7 @@ body.appointmentDetails {
     margin: auto;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* По-прозрачен shadow */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     border-radius: 8px;
     border: 2px solid #D01919;
 }
@@ -53,7 +53,7 @@ h2.text-center {
 
 .appointment:hover {
     transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.07); /* По-прозрачен shadow на hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.07);
 }
 
 .card-img-top-wrapper {
@@ -123,18 +123,6 @@ footer {
     font-size: 0.875rem;
 }
 
-/* Custom CSS */
-.btn-container {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.btn-container .btn {
-    display: none; /* Hide by default */
-}
-
 /* Button Styles */
 .btn-action {
     font-size: 16px;
@@ -143,12 +131,14 @@ footer {
     display: flex;
     align-items: center;
     gap: 5px;
+    text-decoration: none;
 }
 
 .btn-update {
     background-color: #007bff;
     color: white;
     border: none;
+
 }
 
 .btn-update:hover {
@@ -163,4 +153,22 @@ footer {
 
 .btn-delete:hover {
     background-color: #c82333;
+}
+
+/* Specific Styles for Button Containers */
+.text-center {
+    text-align: center;
+}
+
+.d-flex.justify-content-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-body.text-center {
+    margin-top: 20px;
+}
+
+.card-body .btn {
+    display: inline-block;
 }

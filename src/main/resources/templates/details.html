@@ -11,6 +11,8 @@
     <meta name="_csrf_header" th:content="${_csrf.headerName}" />
 
     <link rel="stylesheet" href="/css/styles/site.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 
 <body class="appointmentDetails">
@@ -39,7 +41,8 @@
                 </li>
             </ul>
 
-            <div class="card-body btn-container">
+
+            <div class="card-body text-center">
                 <button id="registerBtn" class="btn btn-primary" style="display:none;">Register</button>
                 <button id="unregisterBtn" class="btn btn-secondary" style="display:none;">Unregister</button>
                 <input type="hidden" id="appointmentId" th:value="${appointmentDetails.id}" />
