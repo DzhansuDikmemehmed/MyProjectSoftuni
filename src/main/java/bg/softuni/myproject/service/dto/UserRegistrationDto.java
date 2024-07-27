@@ -28,8 +28,19 @@ public class UserRegistrationDto {
 
     private String description;
 
+    private String imageUrl;
+
 
     public UserRegistrationDto() {
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public UserRegistrationDto setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+        return this;
     }
 
     public String getUsername() {

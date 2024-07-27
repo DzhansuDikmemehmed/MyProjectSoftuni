@@ -30,8 +30,19 @@ public class User {
     private Set<Role> roles;
 
     private String description;
+
+    private String imageUrl;
     public User() {
         this.roles = new HashSet<>();
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public User setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+        return this;
     }
 
     public String getDescription() {
