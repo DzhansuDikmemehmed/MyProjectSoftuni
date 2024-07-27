@@ -28,6 +28,14 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public Long getUserIdByUsername(String username) {
+        return userRepository
+                .findByUsername(username)
+                .map(user-> user.getId())
+                .orElseThrow(()-> new RuntimeException("User not found with username: " + username));
+    }
+
     private User map(UserRegistrationDto userRegistrationDto) {
         User mappedUser = modelMapper.map(userRegistrationDto, User.class);
         mappedUser.setPassword(passwordEncoder.encode(userRegistrationDto.getPassword()));

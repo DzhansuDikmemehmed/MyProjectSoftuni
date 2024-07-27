@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 public class SecurityConfig {
@@ -22,7 +23,7 @@ public class SecurityConfig {
                         authorizeRequests ->{
                             authorizeRequests
                                     .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                                    .requestMatchers("/", "/users/login","/users/register", "/add-appointment", "/appointments/all", "/appointments/{id}","/appointments/delete/{id}").permitAll()
+                                    .requestMatchers("/", "/users/login","/users/register", "/add-appointment", "/appointments/all", "/appointments/{id}","/appointments/delete/{id}","/appointments/register/{id}","/appointments/unregister/{id}").permitAll()
                                     .anyRequest().authenticated();
                         }
                 )

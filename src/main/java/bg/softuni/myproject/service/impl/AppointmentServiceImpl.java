@@ -1,8 +1,13 @@
+
 package bg.softuni.myproject.service.impl;
 
 import bg.softuni.myproject.model.entity.Appointment;
+import bg.softuni.myproject.model.entity.User;
+import bg.softuni.myproject.model.entity.UserAppointment;
 import bg.softuni.myproject.model.entity.enums.AppointmentStatus;
 import bg.softuni.myproject.repo.AppointmentRepository;
+import bg.softuni.myproject.repo.UserAppointmentRepository;
+import bg.softuni.myproject.repo.UserRepository;
 import bg.softuni.myproject.service.AppointmentService;
 import bg.softuni.myproject.service.dto.AddAppointmentDto;
 import bg.softuni.myproject.service.dto.AllAppointmentsDto;
@@ -19,10 +24,14 @@ import java.util.stream.Collectors;
 public class AppointmentServiceImpl implements AppointmentService {
 
     private final AppointmentRepository appointmentRepository;
+    private final UserAppointmentRepository userAppointmentRepository;
+    private final UserRepository userRepository;
     private final ModelMapper modelMapper;
 
-    public AppointmentServiceImpl(AppointmentRepository appointmentRepository, ModelMapper modelMapper) {
+    public AppointmentServiceImpl(AppointmentRepository appointmentRepository, UserAppointmentRepository userAppointmentRepository, UserRepository userRepository, ModelMapper modelMapper) {
         this.appointmentRepository = appointmentRepository;
+        this.userAppointmentRepository = userAppointmentRepository;
+        this.userRepository = userRepository;
         this.modelMapper = modelMapper;
     }
 
@@ -67,26 +76,42 @@ public class AppointmentServiceImpl implements AppointmentService {
         return dto;    }
 
     @Override
-    public boolean registerForAppointment(Long appointmentId) {
-        Appointment appointment =  appointmentRepository.findById(appointmentId).orElse(null);
+    public boolean registerForAppointment(Long appointmentId, Long userId) {
+        Appointment appointment = appointmentRepository.findById(appointmentId).orElse(null);
+        User user = userRepository.findById(userId).orElse(null);
 
-        if (appointment != null && appointment.getStatus() == AppointmentStatus.ACTIVE && appointment.getRemainingSpots()>0){
+        if (appointment != null && user != null && appointment.getStatus() == AppointmentStatus.ACTIVE && appointment.getRemainingSpots() > 0) {
+            // Проверка дали потребителят вече е регистриран
+            if (userAppointmentRepository.existsByAppointmentIdAndUserId(appointmentId, userId)) {
+                return false; // Потребителят вече е регистриран
+            }
 
-            appointment.setRemainingSpots(appointment.getRemainingSpots()-1);
+            appointment.setRemainingSpots(appointment.getRemainingSpots() - 1);
             appointmentRepository.save(appointment);
+
+            UserAppointment userAppointment = new UserAppointment();
+            userAppointment.setAppointment(appointment);
+            userAppointment.setUser(user);
+            userAppointmentRepository.save(userAppointment);
             return true;
         }
         return false;
     }
 
     @Override
-    public boolean unregisterFromAppointment(Long appointmentId) {
+    public boolean unregisterFromAppointment(Long appointmentId, Long userId) {
         Appointment appointment = appointmentRepository.findById(appointmentId).orElse(null);
+        User user = userRepository.findById(userId).orElse(null);
 
-        if (appointment != null && appointment.getStatus() == AppointmentStatus.ACTIVE) {
-            appointment.setRemainingSpots(appointment.getRemainingSpots() + 1);
-            appointmentRepository.save(appointment);
-            return true;
+        if (appointment != null && user != null && appointment.getStatus() == AppointmentStatus.ACTIVE) {
+            UserAppointment userAppointment = userAppointmentRepository.findByAppointmentIdAndUserId(appointmentId, userId);
+            if (userAppointment != null) {
+                appointment.setRemainingSpots(appointment.getRemainingSpots() + 1);
+                appointmentRepository.save(appointment);
+
+                userAppointmentRepository.delete(userAppointment);
+                return true;
+            }
         }
         return false;
     }
@@ -96,5 +121,11 @@ public class AppointmentServiceImpl implements AppointmentService {
         appointmentRepository.deleteById(appointmentId);
     }
 
+
+
+    @Override
+    public boolean isUserRegistered(Long appointmentId, Long userId) {
+        return userAppointmentRepository.existsByAppointmentIdAndUserId(appointmentId, userId);
+    }
 
 }

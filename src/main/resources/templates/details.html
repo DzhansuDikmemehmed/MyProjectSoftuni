@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Appointment Details</title>
-    <link rel="stylesheet" href="/css/reset-css.css"/>
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/details.css"/> <!-- Include the custom CSS file -->
+
+    <!-- CSRF meta tags -->
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+
     <link rel="stylesheet" href="/css/styles/site.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body class="appointmentDetails">
@@ -40,16 +40,17 @@
             </ul>
 
             <div class="card-body btn-container">
-                <button id="registerBtn" class="btn btn-primary">Register</button>
-                <button id="unregisterBtn" class="btn btn-secondary">Unregister</button>
+                <button id="registerBtn" class="btn btn-primary" style="display:none;">Register</button>
+                <button id="unregisterBtn" class="btn btn-secondary" style="display:none;">Unregister</button>
+                <input type="hidden" id="appointmentId" th:value="${appointmentDetails.id}" />
+                <input type="hidden" id="isRegistered" th:value="${isRegistered}" />
             </div>
 
             <div class="card-body d-flex justify-content-between">
                 <a class="btn btn-update btn-action" th:href="@{/appointments/update/{id}(id=*{appointmentDetails.id})}">
                     <i class="fas fa-edit"></i> Update
                 </a>
-                <form th:method="delete"
-                      th:action="@{/appointments/delete/{id}(id=*{appointmentDetails.id})}" class="mb-0">
+                <form th:method="delete" th:action="@{/appointments/delete/{id}(id=*{appointmentDetails.id})}" class="mb-0">
                     <button class="btn btn-delete btn-action" type="submit">
                         <i class="fas fa-trash-alt"></i> Delete
                     </button>
@@ -62,63 +63,78 @@
 <footer th:replace="fragments/footer"></footer>
 
 <script>
-
-        document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
         const registerBtn = document.getElementById('registerBtn');
         const unregisterBtn = document.getElementById('unregisterBtn');
         const remainingSpotsElement = document.getElementById('remainingSpots');
         const statusElement = document.getElementById('appointmentStatus');
         const maxParticipantsElement = document.getElementById('maxParticipants');
+        const appointmentId = document.getElementById('appointmentId').value;
+        const isRegistered = document.getElementById('isRegistered').value === 'true';
+
+        // Получаване на CSRF токен и заглавие
+        const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+        const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
 
         let remainingSpots = parseInt(remainingSpotsElement.innerText, 10);
         const status = statusElement.innerText.trim();
         const maxParticipants = parseInt(maxParticipantsElement.innerText, 10);
-        const appointmentId = [[${appointmentDetails.id}]]; // Thymeleaf expression to inject the appointment ID
 
-        // Show or hide buttons based on status and remaining spots
-        if (status === 'ACTIVE') {
-        if (remainingSpots > 0) {
-        registerBtn.style.display = 'inline-block';
-    }
-        if (remainingSpots < maxParticipants) {
-        unregisterBtn.style.display = 'inline-block';
-    }
-    }
+        // Актуализиране на видимостта на бутоните
+        const updateButtonDisplay = (isRegistered) => {
+            if (status === 'ACTIVE') {
+                if (isRegistered) {
+                    registerBtn.style.display = 'none';
+                    unregisterBtn.style.display = 'inline-block';
+                } else {
+                    if (remainingSpots > 0) {
+                        registerBtn.style.display = 'inline-block';
+                    }
+                    unregisterBtn.style.display = 'none';
+                }
+            } else {
+                registerBtn.style.display = 'none';
+                unregisterBtn.style.display = 'none';
+            }
+        };
 
-        // Handle register button click
-        registerBtn.addEventListener('click', () => {
-        fetch(`/appointments/register/${appointmentId}`, {
-        method: 'POST'
-    }).then(response => {
-        if (response.ok) {
-        remainingSpots--;
-        remainingSpotsElement.innerText = remainingSpots;
-        registerBtn.style.display = 'none';
-        unregisterBtn.style.display = 'inline-block';
-    } else {
-        alert('Failed to register.');
-    }
-    });
-    });
+        updateButtonDisplay(isRegistered);
 
-        // Handle unregister button click
-        unregisterBtn.addEventListener('click', () => {
-        fetch(`/appointments/unregister/${appointmentId}`, {
-        method: 'POST'
-    }).then(response => {
-        if (response.ok) {
-        remainingSpots++;
-        remainingSpotsElement.innerText = remainingSpots;
-        unregisterBtn.style.display = 'none';
-        registerBtn.style.display = 'inline-block';
-    } else {
-        alert('Failed to unregister.');
-    }
-    });
-    });
+        const updateSpots = (action) => {
+            if (action === 'register') {
+                remainingSpots--;
+            } else if (action === 'unregister') {
+                remainingSpots++;
+            }
+            remainingSpotsElement.innerText = remainingSpots;
+        };
+
+        const handleAction = (action) => {
+            fetch(`/appointments/${action}/${appointmentId}`, {
+                method: 'POST',
+                headers: {
+                    [csrfHeader]: csrfToken,
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    updateSpots(action);
+                    updateButtonDisplay(action === 'register');
+                } else if (response.status === 400) {
+                    alert(`Failed to ${action}. Please try again later.`);
+                } else {
+                    alert(`Unexpected error: ${response.statusText}`);
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again later.');
+            });
+        };
+
+        registerBtn.addEventListener('click', () => handleAction('register'));
+        unregisterBtn.addEventListener('click', () => handleAction('unregister'));
     });
 </script>
-
 </body>
 
 </html>

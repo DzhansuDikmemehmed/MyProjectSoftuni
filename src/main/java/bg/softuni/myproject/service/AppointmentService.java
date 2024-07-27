@@ -14,10 +14,11 @@ public interface AppointmentService {
 
     DetailsAppointmentDto getAppointmentDetails(Long id);
 
-    boolean registerForAppointment(Long appointmentId);
+    boolean registerForAppointment(Long appointmentId, Long userId);
 
-    boolean unregisterFromAppointment(Long appointmentId);
+    boolean unregisterFromAppointment(Long appointmentId, Long userId);
 
     void deleteAppointment(long appointmentId);
 
+    boolean isUserRegistered(Long appointmentId, Long userId);
 }

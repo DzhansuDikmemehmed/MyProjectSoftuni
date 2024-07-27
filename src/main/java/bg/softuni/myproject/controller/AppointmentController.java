@@ -3,10 +3,13 @@ package bg.softuni.myproject.controller;
 import bg.softuni.myproject.model.entity.enums.AppointmentStatus;
 import bg.softuni.myproject.model.entity.enums.TrainingType;
 import bg.softuni.myproject.service.AppointmentService;
+import bg.softuni.myproject.service.UserService;
 import bg.softuni.myproject.service.dto.AddAppointmentDto;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,9 +20,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class AppointmentController {
 
     private final AppointmentService appointmentService;
+    private final UserService userService;
 
-    public AppointmentController(AppointmentService appointmentService) {
+    public AppointmentController(AppointmentService appointmentService, UserService userService) {
         this.appointmentService = appointmentService;
+        this.userService = userService;
     }
 
     @ModelAttribute(name = "appointmentData")
@@ -68,12 +73,24 @@ public class AppointmentController {
 
         model.addAttribute("appointmentDetails", appointmentService.getAppointmentDetails(id));
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Long userId = userService.getUserIdByUsername(username);
+
+        boolean isRegistered = appointmentService.isUserRegistered(id, userId);
+        model.addAttribute("isRegistered", isRegistered);
+
         return "details";
     }
 
-    @PostMapping("/register/{id}")
+    @PostMapping("/appointments/register/{id}")
     public ResponseEntity<?> registerForAppointment(@PathVariable("id") Long id){
-        boolean result = appointmentService.registerForAppointment(id);
+        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Long userIdByUsername = userService.getUserIdByUsername(username);
+
+
+        boolean result = appointmentService.registerForAppointment(id, userIdByUsername);
 
         if (result){
             return ResponseEntity.ok().build();
@@ -82,9 +99,13 @@ public class AppointmentController {
         }
     }
 
-    @PostMapping("/unregister/{id}")
+    @PostMapping("/appointments/unregister/{id}")
     public ResponseEntity<?> unregisterForAppointment(@PathVariable("id") Long id){
-        boolean result = appointmentService.unregisterFromAppointment(id);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Long userId = userService.getUserIdByUsername(username);
+
+        boolean result = appointmentService.unregisterFromAppointment(id, userId);
 
         if (result){
             return ResponseEntity.ok().build();
