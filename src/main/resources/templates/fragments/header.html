@@ -28,7 +28,7 @@
 
                     <th:block sec:authorize="isAuthenticated()">
                         <li><a th:href="@{/add-appointment}">Add new appointment</a></li>
-                        <li><a th:href="@{/users/profile}">Profile</a></li>
+                        <li><a th:href="@{/profile}">Profile</a></li>
                         <li sec:authorize="hasRole('ADMIN')">
                             <a href="#">Admin</a>
                         </li>
