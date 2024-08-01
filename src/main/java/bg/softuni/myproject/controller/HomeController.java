@@ -34,6 +34,10 @@ private final UserService userService;
         model.addAttribute("profileData", userService.findUser());
         return "profile";
     }
+    @GetMapping("/demo")
+    public String viewProfile(){
+        return "demo";
+    }
 
 //    @GetMapping("/details")
 //    public String viewDetails(){

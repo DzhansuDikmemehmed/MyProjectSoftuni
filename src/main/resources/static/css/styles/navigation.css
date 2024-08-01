@@ -1,16 +1,85 @@
-.main-nav ul{
+/* Ensure the header and navigation bar are set up correctly */
+.header {
+    background: #333;
+    color: #fff;
+    padding: 1em 0;
+}
+
+.main-nav ul {
     display: flex;
+    align-items: center; /* Center items vertically */
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
-.main-nav a,
-.main-nav li{
-    display: block;
+
+/* Make sure all list items are aligned horizontally */
+.main-nav ul li {
+    margin: 0; /* Reset margin for list items */
+    display: flex; /* Use flexbox for list items */
+}
+
+/* Specifically style the first <li> to be on the far left */
+.main-nav ul li:first-child {
+    margin-right: auto; /* Push all other items to the right */
+}
+
+/* Style the language selector form */
+.main-nav ul li:first-child form {
+    display: flex; /* Align label and select box */
+    align-items: center; /* Center items vertically */
+}
+
+/* Style for language selector label */
+.main-nav ul li:first-child label {
+    margin-right: 0.5em; /* Space between label and select box */
+    color: #fff; /* Text color */
+}
+
+/* Style for the select box */
+.main-nav ul li:first-child select {
+    background-color: #ffffff; /* White background */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 5px; /* Padding inside the select box */
+    font-size: 14px; /* Font size */
+}
+
+/* Optional hover effect for select box */
+.main-nav ul li:first-child select:hover {
+    border-color: #D01919; /* Change border color on hover */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Slight shadow on hover */
+}
+
+/* General link styling */
+.main-nav a {
+    padding: 0.5em 1em; /* Padding around links */
+    color: #fff; /* Text color */
+    text-decoration: none; /* Remove underline */
+    display: block; /* Block level links */
+}
+
+.main-nav a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Style for the language selector */
+#lang {
+    background-color: #ffffff; /* White background */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 5px; /* Padding inside the select box */
+    font-size: 14px; /* Font size */
+    color: #333; /* Text color */
+}
+
+/* Ensure flag icons are visible and sized correctly */
+.flag-icon {
+    width: 1.5em; /* Adjust size as needed */
+    height: 1em; /* Adjust size as needed */
+    display: inline-block; /* Make sure it aligns with text */
+    margin-right: 0.5em; /* Space between the flag and text */
+    vertical-align: middle; /* Align with text */
 }
 
 
-.main-nav a{
-    padding: 0.5em 1em;
-}
-
-.main-nav a:hover{
-    text-decoration: underline;
-}

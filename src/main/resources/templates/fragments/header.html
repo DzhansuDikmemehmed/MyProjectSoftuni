@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fitness Site</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to the external CSS file -->
-    <!-- Include Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.0.1/css/flag-icons.min.css">
 </head>
 
 <body>
@@ -18,6 +17,32 @@
             <p class="site-title">Fitness Site</p>
             <nav class="main-nav">
                 <ul>
+                    <li>
+                        <form th:method="get">
+                            <label class="text-white" for="lang" th:text="#{nav_bar_language}">Language</label>
+                            <select id="lang" name="lang" onchange="this.form.submit()">
+                                <option value="en_US" th:selected="${#locale.toString()=='en_US'}">
+                                    <i class="flag-icon flag-icon-us"></i> English
+                                </option>
+                                <option value="bg_BG" th:selected="${#locale.toString()=='bg_BG'}">
+                                    <i class="flag-icon flag-icon-bg"></i> Български
+                                </option>
+                            </select>
+                        </form>
+                    </li>
+<!--                    <li>-->
+<!--                        <form th:action="@{/change-language}" method="post">-->
+<!--                            <label class="text-white" for="lang" th:text="#{nav_bar_language}">Language</label>-->
+<!--                            <select id="lang" name="lang" onchange="this.form.submit()">-->
+<!--                                <option value="en_US" th:selected="${#locale.toString()=='en_US'}">-->
+<!--                                    <i class="flag-icon flag-icon-us"></i> English-->
+<!--                                </option>-->
+<!--                                <option value="bg_BG" th:selected="${#locale.toString()=='bg_BG'}">-->
+<!--                                    <i class="flag-icon flag-icon-bg"></i> Български-->
+<!--                                </option>-->
+<!--                            </select>-->
+<!--                        </form>-->
+<!--                    </li>-->
 
                     <li>
                         <a th:href="@{/}" th:text="#{nav_bar_home}">Home</a>
@@ -39,28 +64,10 @@
                         </li>
                         <li>
                             <form method="post" th:action="@{users/logout}" class="logout-form">
-
-                                <button type="submit" class="btn btn-logout" th:text="#{nav_bar_logout}">
-                                    Logout
-                                </button>
+                                <button type="submit" class="btn btn-logout" th:text="#{nav_bar_logout}">Logout</button>
                             </form>
                         </li>
                     </th:block>
-
-                    <li>
-                        <form th:method="get">
-                            <label class="text-white" for="lang" th:text="#{nav_bar_language}">Language</label>
-                            <select
-                            id="lang"
-                            name="lang"
-                            onchange="this.form.submit()">
-                                <option value="en_US" th:selected="${#locale.toString()=='en_US'}">English</option>
-                                <option value="bg_BG" th:selected="${#locale.toString()=='bg_BG'}">Български</option>
-
-                            </select>
-
-                        </form>
-                    </li>
                 </ul>
             </nav>
         </div>
