@@ -26,7 +26,22 @@
                 <div class="carousel-caption">
                     <h1>NO PAIN NO GAIN</h1>
                     <p>Nice-looking body and powerful organism are interconnected and we can help you with both.</p>
-                    <p><a class="btn btn-lg btn-primary" href="https://my.pulsefit.bg/#/Login">Sign up today</a></p>
+                    <p>
+                        <!-- Button for unauthenticated users -->
+                        <a class="btn btn-lg btn-primary" th:href="@{/users/login}" sec:authorize="!isAuthenticated()">
+                            Sign up today
+                        </a>
+
+                        <!-- Form for authenticated users to logout -->
+                    <form th:action="@{/users/logout}" method="post" sec:authorize="isAuthenticated()" class="logout-form" style="display:inline;">
+<!--                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
+                        <button type="submit" class="btn btn-lg btn-primary">
+                            Logout
+                        </button>
+                    </form>
+                    </p>
+
+
                 </div>
             </div>
 
@@ -37,7 +52,20 @@
                 <div class="carousel-caption text-start">
                     <h1>NO PAIN NO GAIN</h1>
                     <p class="opacity-75">Nice-looking body and powerful organism are interconnected and we can help you with both.</p>
-                    <p><a class="btn btn-lg btn-primary" href="https://pulsefit.bg/en">GET STARTED</a></p>
+                    <p>
+                        <!-- Button for unauthenticated users -->
+                        <a class="btn btn-lg btn-primary" th:href="@{/users/login}" sec:authorize="!isAuthenticated()">
+                            Get started
+                        </a>
+
+                        <!-- Form for authenticated users to logout -->
+                    <form th:action="@{/users/logout}" method="post" sec:authorize="isAuthenticated()" class="logout-form" style="display:inline;">
+                        <!--                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
+                        <button type="submit" class="btn btn-lg btn-primary">
+                            Logout
+                        </button>
+                    </form>
+                    </p>
                 </div>
             </div>
         </div>
@@ -59,7 +87,20 @@
                 <div class="carousel-caption text-start">
                     <h1>NO PAIN NO GAIN</h1>
                     <p>Nice-looking body and powerful organism are interconnected and we can help you with both.9</p>
-                    <p><a class="btn btn-lg btn-primary" href="https://pulsefit.bg/en">GET STARTED</a></p>
+                    <p>
+                        <!-- Button for unauthenticated users -->
+                        <a class="btn btn-lg btn-primary" th:href="@{/users/login}" sec:authorize="!isAuthenticated()">
+                            Get started
+                        </a>
+
+                        <!-- Form for authenticated users to logout -->
+                    <form th:action="@{/users/logout}" method="post" sec:authorize="isAuthenticated()" class="logout-form" style="display:inline;">
+                        <!--                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
+                        <button type="submit" class="btn btn-lg btn-primary">
+                            Logout
+                        </button>
+                    </form>
+                    </p>
                 </div>
             </div>
         </div>

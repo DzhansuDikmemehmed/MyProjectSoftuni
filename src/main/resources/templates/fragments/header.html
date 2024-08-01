@@ -18,28 +18,49 @@
             <p class="site-title">Fitness Site</p>
             <nav class="main-nav">
                 <ul>
+
+                    <li>
+                        <a th:href="@{/}" th:text="#{nav_bar_home}">Home</a>
+                    </li>
                     <!-- Conditional rendering based on authentication -->
                     <th:block sec:authorize="!isAuthenticated()">
-                        <li><a th:href="@{/}">Home</a></li>
-                        <li><a th:href="@{/users/login}">Login</a></li>
-                        <li><a th:href="@{/users/register}">Register</a></li>
-                        <li><a th:href="@{/about}">About</a></li>
+                        <li><a th:href="@{/users/login}" th:text="#{nav_bar_login}">Login</a></li>
+                        <li><a th:href="@{/users/register}" th:text="#{nav_bar_register}">Register</a></li>
+                        <li><a th:href="@{/about}" th:text="#{nav_bar_about}">About</a></li>
                     </th:block>
 
                     <th:block sec:authorize="isAuthenticated()">
-                        <li><a th:href="@{/add-appointment}">Add new appointment</a></li>
-                        <li><a th:href="@{/profile}">Profile</a></li>
+                        <li><a th:href="@{/add-appointment}" th:text="#{nav_bar_add_appointment}">Add new appointment</a></li>
+                        <li><a th:href="@{/profile}" th:text="#{nav_bar_profile}">Profile</a></li>
+                        <li><a th:href="@{/appointments-all}" th:text="#{nav_bar_all_appointments}">All appointments</a></li>
+
                         <li sec:authorize="hasRole('ADMIN')">
-                            <a href="#">Admin</a>
+                            <a href="#" th:text="#{nav_bar_admin}">Admin</a>
                         </li>
                         <li>
                             <form method="post" th:action="@{users/logout}" class="logout-form">
-                                <button type="submit" class="btn btn-logout">
+
+                                <button type="submit" class="btn btn-logout" th:text="#{nav_bar_logout}">
                                     Logout
                                 </button>
                             </form>
                         </li>
                     </th:block>
+
+                    <li>
+                        <form th:method="get">
+                            <label class="text-white" for="lang" th:text="#{nav_bar_language}">Language</label>
+                            <select
+                            id="lang"
+                            name="lang"
+                            onchange="this.form.submit()">
+                                <option value="en_US" th:selected="${#locale.toString()=='en_US'}">English</option>
+                                <option value="bg_BG" th:selected="${#locale.toString()=='bg_BG'}">Български</option>
+
+                            </select>
+
+                        </form>
+                    </li>
                 </ul>
             </nav>
         </div>

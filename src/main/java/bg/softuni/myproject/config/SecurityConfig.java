@@ -23,7 +23,7 @@ public class SecurityConfig {
                         authorizeRequests ->{
                             authorizeRequests
                                     .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                                    .requestMatchers("/", "/users/login","/users/register", "/add-appointment", "/appointments/all", "/appointments/{id}","/appointments/delete/{id}","/appointments/register/{id}","/appointments/unregister/{id}", "/profile").permitAll()
+                                    .requestMatchers("/", "/users/login","/users/register", "/about").permitAll()
                                     .anyRequest().authenticated();
                         }
                 )
@@ -43,7 +43,6 @@ public class SecurityConfig {
                                     .logoutUrl("/users/logout")
                                     .logoutSuccessUrl("/")
                                     .invalidateHttpSession(true);
-
 
 
                         }
