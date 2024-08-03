@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class AddAppointmentDto {
+    private Long id;
 
     private String imageUrl;
 
@@ -39,6 +40,14 @@ public class AddAppointmentDto {
     private AppointmentStatus status;
 
 
+    public Long getId() {
+        return id;
+    }
+
+    public AddAppointmentDto setId(Long id) {
+        this.id = id;
+        return this;
+    }
 
     public AddAppointmentDto() {
     }
