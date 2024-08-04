@@ -58,6 +58,16 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    @Override
+    public boolean isUsernameUnique(String username) {
+        return userRepository.findByUsername(username).isEmpty();
+    }
+
+    @Override
+    public boolean isEmailUnique(String email) {
+        return !userRepository.existsByEmail(email);
+    }
+
 
     private User map(UserRegistrationDto userRegistrationDto) {
         User mappedUser = modelMapper.map(userRegistrationDto, User.class);

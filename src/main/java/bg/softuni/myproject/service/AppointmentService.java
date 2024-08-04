@@ -26,6 +26,6 @@ public interface AppointmentService {
 
     boolean isUserRegistered(Long appointmentId, Long userId);
 
-    public boolean updateAppointment(Long id, String coachName, LocalDateTime appointmentDateTime, BigDecimal price, int durationMinutes, int maxParticipants, String description, AppointmentStatus status, TrainingType trainingType);
-
+  //  public boolean updateAppointment(Long id, String coachName, LocalDateTime appointmentDateTime, BigDecimal price, int durationMinutes, int maxParticipants, String description, AppointmentStatus status, TrainingType trainingType);
+  boolean updateAppointment(Long id, AddAppointmentDto appointmentData);
 }

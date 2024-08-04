@@ -141,17 +141,38 @@ public class AppointmentController {
 //        return "edit-appointment";
 //    }
 
-//    @GetMapping("/appointments/update/{id}")
-//    public String editAppointment(@PathVariable("id") Long id, Model model) {
-//        DetailsAppointmentDto appointmentDto = appointmentService.getAppointmentDetails(id);
-//        model.addAttribute("appointmentData", appointmentDto);
-//        model.addAttribute("allTrainingTypes", TrainingType.values());
-//        model.addAttribute("allStatusTypes", AppointmentStatus.values());
-//
-//        return "edit-appointment";
-//    }
-//
-//
+    @GetMapping("/appointments/update/{id}")
+    public String editAppointment(@PathVariable("id") Long id, Model model) {
+        DetailsAppointmentDto appointmentDto = appointmentService.getAppointmentDetails(id);
+        model.addAttribute("appointmentData", appointmentDto);
+        model.addAttribute("allTrainingTypes", TrainingType.values());
+        model.addAttribute("allStatusTypes", AppointmentStatus.values());
+
+        return "edit-appointment";
+    }
+    @PutMapping("/appointments/update/{id}")
+    public String updateAppointmentPut(
+            @PathVariable("id") Long id,
+            @Valid  AddAppointmentDto appointmentData,
+            BindingResult bindingResult,
+            RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("appointmentData", appointmentData);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.appointmentData", bindingResult);
+            return "redirect:/appointments/update/" + id;
+        }
+
+        boolean updated = appointmentService.updateAppointment(id, appointmentData);
+        if (!updated) {
+            redirectAttributes.addFlashAttribute("error", "Failed to update the appointment.");
+            return "redirect:/appointments/update/" + id;
+        }
+
+        redirectAttributes.addFlashAttribute("message", "Appointment updated successfully.");
+        return "redirect:/appointments/" + id; // Redirect to the updated appointment details page
+    }
+
 //    @PostMapping("/appointments/update/{id}")
 //    public String updateAppointment(@PathVariable("id") Long id,
 //                                    @Valid @ModelAttribute("appointmentData") AddAppointmentDto appointmentData,
@@ -172,31 +193,35 @@ public class AppointmentController {
 //        return "redirect:/appointments-all";
 //    }
 
-    @PostMapping("appointments/update/{id}")
-    @RequestMapping(method = RequestMethod.PUT, value = "appointments/update/{id}")
-    public String updateAppointment(
-            @PathVariable Long id,
-            @RequestParam String coachName,
-            @RequestParam LocalDateTime appointmentDateTime,
-            @RequestParam BigDecimal price,
-            @RequestParam int durationMinutes,
-            @RequestParam int maxParticipants,
-            @RequestParam String description,
-            @RequestParam AppointmentStatus status,
-            @RequestParam TrainingType trainingType,
-            RedirectAttributes redirectAttributes) {
 
-        // Логика за актуализиране на срещата
-        boolean updated = appointmentService.updateAppointment(id, coachName, appointmentDateTime, price, durationMinutes, maxParticipants, description, status, trainingType);
+//    @PostMapping("appointments/update/{id}")
+//    @RequestMapping(method = RequestMethod.PUT, value = "appointments/update/{id}")
+//    public String updateAppointment(
+//            @PathVariable Long id,
+//            @RequestParam String coachName,
+//            @RequestParam LocalDateTime appointmentDateTime,
+//            @RequestParam BigDecimal price,
+//            @RequestParam int durationMinutes,
+//            @RequestParam int maxParticipants,
+//            @RequestParam String description,
+//            @RequestParam AppointmentStatus status,
+//            @RequestParam TrainingType trainingType,
+//            RedirectAttributes redirectAttributes) {
+//
+//        // Логика за актуализиране на срещата
+//        boolean updated = appointmentService.updateAppointment(id, coachName, appointmentDateTime, price, durationMinutes, maxParticipants, description, status, trainingType);
+//
+//        if (updated) {
+//            redirectAttributes.addFlashAttribute("message", "Appointment updated successfully.");
+//            return "redirect:/appointments";
+//        } else {
+//            redirectAttributes.addFlashAttribute("error", "Failed to update the appointment.");
+//            return "redirect:/appointments/" + id;
+//        }
+//    }
 
-        if (updated) {
-            redirectAttributes.addFlashAttribute("message", "Appointment updated successfully.");
-            return "redirect:/appointments";
-        } else {
-            redirectAttributes.addFlashAttribute("error", "Failed to update the appointment.");
-            return "redirect:/appointments/" + id;
-        }
-    }
+
+
 
 
 }

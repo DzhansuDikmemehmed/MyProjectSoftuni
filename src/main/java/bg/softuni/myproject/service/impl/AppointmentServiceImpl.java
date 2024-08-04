@@ -131,46 +131,46 @@ public class AppointmentServiceImpl implements AppointmentService {
         return userAppointmentRepository.existsByAppointmentIdAndUserId(appointmentId, userId);
     }
 
-//    @Override
-//    public boolean updateAppointment(Long id, AddAppointmentDto appointmentData) {
-//        Optional<Appointment> optionalAppointment = appointmentRepository.findById(id);
-//        if (optionalAppointment.isEmpty()) {
-//            return false; // Appointment not found
-//        }
-//
-//        Appointment appointment = optionalAppointment.get();
-//        appointment.setCoachName(appointmentData.getCoachName());
-//        appointment.setAppointmentDateTime(appointmentData.getAppointmentDateTime());
-//        appointment.setPrice(appointmentData.getPrice());
-//        appointment.setDurationMinutes(appointmentData.getDurationMinutes());
-//        appointment.setMaxParticipants(appointmentData.getMaxParticipants());
-//        appointment.setDescription(appointmentData.getDescription());
-//        appointment.setStatus(appointmentData.getStatus());
-//        appointment.setType(appointmentData.getType());
-//
-//        appointmentRepository.save(appointment);
-//        return true; // Successfully updated
-//    }
-
-    public boolean updateAppointment(Long id, String coachName, LocalDateTime appointmentDateTime, BigDecimal price, int durationMinutes, int maxParticipants, String description, AppointmentStatus status, TrainingType trainingType) {
+    @Override
+    public boolean updateAppointment(Long id, AddAppointmentDto appointmentData) {
         Optional<Appointment> optionalAppointment = appointmentRepository.findById(id);
-        if (optionalAppointment.isPresent()) {
-            Appointment appointment = optionalAppointment.get();
-            // Актуализирайте полетата на срещата
-            appointment.setCoachName(coachName);
-            appointment.setAppointmentDateTime(appointmentDateTime);
-            appointment.setPrice(price);
-            appointment.setDurationMinutes(durationMinutes);
-            appointment.setMaxParticipants(maxParticipants);
-            appointment.setDescription(description);
-            appointment.setStatus(status);
-            appointment.setType(trainingType);
-            // Запазване на актуализираната среща
-            appointmentRepository.save(appointment);
-            return true;
+        if (optionalAppointment.isEmpty()) {
+            return false; // Appointment not found
         }
-        return false;
+
+        Appointment appointment = optionalAppointment.get();
+        appointment.setCoachName(appointmentData.getCoachName());
+        appointment.setAppointmentDateTime(appointmentData.getAppointmentDateTime());
+        appointment.setPrice(appointmentData.getPrice());
+        appointment.setDurationMinutes(appointmentData.getDurationMinutes());
+        appointment.setMaxParticipants(appointmentData.getMaxParticipants());
+        appointment.setDescription(appointmentData.getDescription());
+        appointment.setStatus(appointmentData.getStatus());
+        appointment.setType(appointmentData.getType());
+
+        appointmentRepository.save(appointment);
+        return true; // Successfully updated
     }
+
+//    public boolean updateAppointment(Long id, String coachName, LocalDateTime appointmentDateTime, BigDecimal price, int durationMinutes, int maxParticipants, String description, AppointmentStatus status, TrainingType trainingType) {
+//        Optional<Appointment> optionalAppointment = appointmentRepository.findById(id);
+//        if (optionalAppointment.isPresent()) {
+//            Appointment appointment = optionalAppointment.get();
+//            // Актуализирайте полетата на срещата
+//            appointment.setCoachName(coachName);
+//            appointment.setAppointmentDateTime(appointmentDateTime);
+//            appointment.setPrice(price);
+//            appointment.setDurationMinutes(durationMinutes);
+//            appointment.setMaxParticipants(maxParticipants);
+//            appointment.setDescription(description);
+//            appointment.setStatus(status);
+//            appointment.setType(trainingType);
+//            // Запазване на актуализираната среща
+//            appointmentRepository.save(appointment);
+//            return true;
+//        }
+//        return false;
+//    }
 
 
 }

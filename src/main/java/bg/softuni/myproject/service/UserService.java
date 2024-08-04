@@ -11,4 +11,8 @@ public interface UserService {
     Long getUserIdByUsername(String username);
 
     UserProfileDto findUser();
+
+    boolean isUsernameUnique(String username);
+
+    boolean isEmailUnique(String email);
 }

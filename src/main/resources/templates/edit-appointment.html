@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
-<body>
+<body class="allAppointments">
 <header>
     <section th:replace="fragments/section-top-bar"></section>
     <div th:replace="fragments/header"></div>
@@ -32,7 +32,7 @@
 
         <div class="form-group">
             <label for="appointmentDateTime">Date & Time:</label>
-            <input type="datetime-local" id="appointmentDateTime" name="appointmentDateTime" th:value="${#dates.format(appointmentData.appointmentDateTime, 'yyyy-MM-dd\'T\'HH:mm')}" class="form-control" required />
+            <input type="datetime-local" id="appointmentDateTime" name="appointmentDateTime" th:value="${#temporals.format(appointmentData.appointmentDateTime, 'yyyy-MM-dd''T''HH:mm')}" class="form-control" required />
         </div>
 
         <div class="form-group">
@@ -65,14 +65,23 @@
         <div class="form-group">
             <label for="trainingType">Training Type:</label>
             <select id="trainingType" name="trainingType" class="form-control">
-                <option th:each="type : ${allTrainingTypes}" th:value="${type}" th:text="${type}" th:selected="${type == appointmentData.trainingType}"></option>
+                <option th:each="type : ${allTrainingTypes}" th:value="${type}" th:text="${type}" th:selected="${type == appointmentData.type}"></option>
             </select>
         </div>
 
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-        <a href="#" th:href="@{/appointments-all}" class="btn btn-secondary">Back</a>
+        <div class="row">
+            <div class="col col-md-4">
+                <div class="button-holder d-flex">
+                    <input type="submit" class="btn btn-primary btn-lg" value="Save changes"/>
+                </div>
+            </div>
+        </div>
+        <a  th:href="@{/appointments-all}" class="btn btn-secondary">Back</a>
     </form>
-</div>
+
+    <!-- Display Flash Messages -->
+    <div th:if="${message}" class="alert alert-success mt-3" role="alert" th:text="${message}"></div>
+    <div th:if="${error}" class="alert alert-danger mt-3" role="alert" th:text="${error}"></div></div>
 
 <footer th:replace="fragments/footer"></footer>
 </body>

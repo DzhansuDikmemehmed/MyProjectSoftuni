@@ -1,27 +1,36 @@
 package bg.softuni.myproject.service.dto;
 
 import bg.softuni.myproject.model.entity.enums.Level;
+import bg.softuni.myproject.validation.annotation.UniqueEmail;
+import bg.softuni.myproject.validation.annotation.UniqueUsername;
+import bg.softuni.myproject.validation.annotation.ValidatePasswords;
 import jakarta.validation.constraints.*;
 
+@ValidatePasswords
 public class UserRegistrationDto {
 
-    @NotBlank
-    @Size(min = 3, max = 20)
+    @NotBlank(message = "Username cannot be blank.")
+    @Size(min = 3, max = 20, message = "Username must be between 3 and 20 characters long.")
+    @UniqueUsername
     private String username;
-    @NotEmpty
-    @Size(min = 5, max = 20)
+
+    @NotEmpty(message = "Full name cannot be empty.")
+    @Size(min = 5, max = 20, message = "Full name must be between 5 and 20 characters long.")
     private String fullName;
 
-    @Email
+    @Email(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "Email must be valid and properly formatted.")
+    @UniqueEmail
     private String email;
 
-    @Min(0)
-    @Max(90)
+    @Min(value = 1, message = "Age must be at least 1.")
+    @Max(value = 90, message = "Age must be no more than 90.")
     private Integer age;
 
-    @Size(min = 5)
-    @NotEmpty
+    @Size(min = 5, max = 200, message = "Password must be between 5 and 200 characters long.")
+    @NotEmpty(message = "Password cannot be empty.")
     private String password;
+
+    @NotEmpty(message = "Confirm password cannot be empty.")
     private String confirmPassword;
 
     private Level level;
