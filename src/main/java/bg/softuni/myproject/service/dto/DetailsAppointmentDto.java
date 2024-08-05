@@ -9,6 +9,7 @@ import jakarta.validation.constraints.PositiveOrZero;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class DetailsAppointmentDto {
 
@@ -42,9 +43,19 @@ public class DetailsAppointmentDto {
     @NotNull
     private AppointmentStatus status;
 
+    private List<String> allCurrencies;
+
     public DetailsAppointmentDto() {
     }
 
+    public List<String> getAllCurrencies() {
+        return allCurrencies;
+    }
+
+    public DetailsAppointmentDto setAllCurrencies(List<String> allCurrencies) {
+        this.allCurrencies = allCurrencies;
+        return this;
+    }
 
     public long getId() {
         return id;

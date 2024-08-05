@@ -18,12 +18,12 @@ public class OnlineTrainingServiceImpl implements OnlineTrainingService {
     private final ModelMapper modelMapper;
     private final OnlineTrainingRepository onlineTrainingRepository;
 
-    private final CategoryRepository categoryRepository;
 
-    public OnlineTrainingServiceImpl(ModelMapper modelMapper, OnlineTrainingRepository onlineTrainingRepository, CategoryRepository categoryRepository) {
+
+    public OnlineTrainingServiceImpl(ModelMapper modelMapper, OnlineTrainingRepository onlineTrainingRepository) {
         this.modelMapper = modelMapper;
         this.onlineTrainingRepository = onlineTrainingRepository;
-        this.categoryRepository = categoryRepository;
+
     }
 
     @Override

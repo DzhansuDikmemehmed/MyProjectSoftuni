@@ -32,14 +32,30 @@
             <ul class="appointment-details list-group list-group-flush">
                 <li class="list-group-item">
                     <div class="card-text">• Date & Time: <span th:text="${appointmentDetails.appointmentDateTime}"></span></div>
-                    <div class="card-text">• Price: <span th:text="${appointmentDetails.price}"></span></div>
+                    <div class="card-text">• Price: <span id="price" th:text="${appointmentDetails.price}"></span></div>
                     <div class="card-text">• Duration: <span th:text="${appointmentDetails.durationMinutes} + ' minutes'"></span></div>
                     <div class="card-text">• Max Participants: <span id="maxParticipants" th:text="${appointmentDetails.maxParticipants}"></span></div>
                     <div class="card-text">• Remaining Spots: <span id="remainingSpots" th:text="${appointmentDetails.remainingSpots}"></span></div>
                     <div class="card-text">• Description: <span th:text="${appointmentDetails.description}"></span></div>
                     <div class="card-text">• Status: <span id="appointmentStatus" th:text="${appointmentDetails.status}"></span></div>
+
+                    <div class="card-text">• Currency
+                        <select id="currency" >
+
+                            <option
+                                    th:each="currency: *{appointmentDetails.allCurrencies}"
+                                    th:value="${currency}"
+
+                                    th:selected="${currency} == 'BGN'"
+                                    th:text="${currency}"
+                            >
+
+                            </option>
+                        </select>
+                    </div>
                 </li>
             </ul>
+            <input type="hidden" id="priceInBGN" th:value="*{appointmentDetails.price}">
 
 
             <div class="card-body text-center">
@@ -68,6 +84,7 @@
 </div>
 
 <footer th:replace="fragments/footer"></footer>
+<script th:src="@{/js/currency.js}"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -140,6 +157,9 @@
 
         registerBtn.addEventListener('click', () => handleAction('register'));
         unregisterBtn.addEventListener('click', () => handleAction('unregister'));
+
+
+
     });
 </script>
 </body>

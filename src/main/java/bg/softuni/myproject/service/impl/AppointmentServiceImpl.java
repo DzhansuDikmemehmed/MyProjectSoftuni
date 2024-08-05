@@ -10,6 +10,7 @@ import bg.softuni.myproject.repo.AppointmentRepository;
 import bg.softuni.myproject.repo.UserAppointmentRepository;
 import bg.softuni.myproject.repo.UserRepository;
 import bg.softuni.myproject.service.AppointmentService;
+import bg.softuni.myproject.service.ExRateService;
 import bg.softuni.myproject.service.dto.AddAppointmentDto;
 import bg.softuni.myproject.service.dto.AllAppointmentsDto;
 import bg.softuni.myproject.service.dto.DetailsAppointmentDto;
@@ -31,11 +32,14 @@ public class AppointmentServiceImpl implements AppointmentService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
 
-    public AppointmentServiceImpl(AppointmentRepository appointmentRepository, UserAppointmentRepository userAppointmentRepository, UserRepository userRepository, ModelMapper modelMapper) {
+    private final ExRateService exRateService;
+
+    public AppointmentServiceImpl(AppointmentRepository appointmentRepository, UserAppointmentRepository userAppointmentRepository, UserRepository userRepository, ModelMapper modelMapper, ExRateService exRateService) {
         this.appointmentRepository = appointmentRepository;
         this.userAppointmentRepository = userAppointmentRepository;
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
+        this.exRateService = exRateService;
     }
 
     @Override
@@ -75,7 +79,10 @@ public class AppointmentServiceImpl implements AppointmentService {
         }
 
         DetailsAppointmentDto dto = modelMapper.map(appointmentOptional.get(), DetailsAppointmentDto.class);
+
         dto.setRemainingSpots(appointmentOptional.get().getRemainingSpots());
+
+        dto.setAllCurrencies(exRateService.allSupportedCurrencies());
         return dto;    }
 
     @Override
