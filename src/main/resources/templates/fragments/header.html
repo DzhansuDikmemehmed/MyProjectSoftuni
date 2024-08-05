@@ -58,6 +58,8 @@
                         <li><a th:href="@{/add-appointment}" th:text="#{nav_bar_add_appointment}">Add new appointment</a></li>
                         <li><a th:href="@{/profile}" th:text="#{nav_bar_profile}">Profile</a></li>
                         <li><a th:href="@{/appointments-all}" th:text="#{nav_bar_all_appointments}">All appointments</a></li>
+                        <li><a th:href="@{/add-onlineTraining}" th:text="#{nav_bar_add_online_training}">Add online training</a></li>
+                        <li><a th:href="@{/online-allTrainings}" th:text="#{nav_bar_all_online_training}">All online trainings</a></li>
 
                         <li sec:authorize="hasRole('ADMIN')">
                             <a href="#" th:text="#{nav_bar_admin}">Admin</a>

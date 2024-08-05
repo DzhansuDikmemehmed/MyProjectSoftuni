@@ -59,7 +59,7 @@ public class AppointmentController {
         }
         appointmentService.createAppointment(addAppointmentDto);
 
-        return "redirect:/appointments/all";
+        return "redirect:/appointments-all";
 
     }
 

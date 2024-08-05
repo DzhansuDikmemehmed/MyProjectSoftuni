@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Online Training</title>
+    <link rel="stylesheet" href="/css/styles/site.css">
+</head>
+<body class="addAppointment">
+<header>
+    <section th:replace="fragments/section-top-bar"></section>
+    <div th:replace="fragments/header"></div>
+</header>
+<div class="registerContainer">
+    <h2 class="text-center text-dark">Add Online Training</h2>
+    <form th:method="POST"
+          th:action="@{/add-onlineTraining}"
+          th:object="${onlineTrainingData}"
+          class="main-form mx-auto" novalidate>
+
+        <!-- Title -->
+        <div class="form-group mb-3">
+            <label for="title" class="font-weight-bold">Title</label>
+            <input
+                    th:field="*{title}"
+                    type="text" id="title" class="form-control"
+                    placeholder="Title"/>
+            <small class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></small>
+        </div>
+
+        <!-- Coach Name -->
+        <div class="form-group mb-3">
+            <label for="coachName" class="font-weight-bold">Coach Name</label>
+            <input
+                    th:field="*{coachName}"
+                    type="text" id="coachName" class="form-control"
+                    placeholder="Coach Name"/>
+            <small class="text-danger" th:if="${#fields.hasErrors('coachName')}" th:errors="*{coachName}"></small>
+        </div>
+
+        <!-- Training Type -->
+        <div class="form-group mb-3">
+            <label for="type" class="font-weight-bold">Training Type</label>
+            <select
+                    th:field="*{type}"
+                    id="type"
+                    class="form-control">
+                <option th:each="type : ${allTrainingTypes}"
+                        th:value="${type}"
+                        th:text="${type}"></option>
+            </select>
+            <small class="text-danger" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></small>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group mb-3">
+            <label for="description" class="font-weight-bold">Description</label>
+            <textarea
+                    th:field="*{description}"
+                    id="description" rows="4" class="form-control"
+                    placeholder="Description"></textarea>
+            <small class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></small>
+        </div>
+
+        <!-- Video URL -->
+        <div class="form-group mb-3">
+            <label for="videoUrl" class="font-weight-bold">Video URL</label>
+            <input
+                    th:field="*{videoUrl}"
+                    type="text" id="videoUrl" class="form-control"
+                    placeholder="Video URL"/>
+            <small class="text-danger" th:if="${#fields.hasErrors('videoUrl')}" th:errors="*{videoUrl}"></small>
+        </div>
+        <!-- Image URL -->
+        <div class="form-group mb-3">
+            <label for="imageUrl" class="font-weight-bold">Image URL</label>
+            <input
+                    th:field="*{imageUrl}"
+                    type="text" id="imageUrl" class="form-control"
+                    placeholder="Image URL"/>
+            <small class="text-danger" th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}"></small>
+        </div>
+        <!-- Submit Button -->
+        <div class="button-holder">
+            <input type="submit" class="btn btn-primary btn-lg" value="Submit"/>
+        </div>
+    </form>
+</div>
+<footer th:replace="fragments/footer"></footer>
+</body>
+</html>
