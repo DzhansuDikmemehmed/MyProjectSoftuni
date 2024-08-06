@@ -8,6 +8,7 @@ import bg.softuni.myproject.service.dto.ExRatesDto;
 import bg.softuni.myproject.service.exception.ApiObjectNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
@@ -29,7 +30,8 @@ public class ExRateServiceImpl implements ExRateService {
 
     private final RestClient restClient;
 
-    public ExRateServiceImpl(ForexApiConfig forexApiConfig, ExRateRepository exRateRepository, RestClient restClient) {
+    public ExRateServiceImpl(ForexApiConfig forexApiConfig, ExRateRepository exRateRepository,
+                            @Qualifier("genericRestClient") RestClient restClient) {
         this.forexApiConfig = forexApiConfig;
         this.exRateRepository = exRateRepository;
         this.restClient = restClient;

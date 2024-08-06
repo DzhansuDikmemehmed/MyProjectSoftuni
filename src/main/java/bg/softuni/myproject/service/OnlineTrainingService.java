@@ -9,7 +9,7 @@ import bg.softuni.myproject.service.dto.OnlineTrainingByCategoryDto;
 import java.util.List;
 
 public interface OnlineTrainingService {
-    Long createOnlineTraining(AddOnlineTrainingDto addOnlineTrainingDto);
+    void createOnlineTraining(AddOnlineTrainingDto addOnlineTrainingDto);
 
     List<AllOnlineTrainingsDto> getAllOnlineTrainings();
 

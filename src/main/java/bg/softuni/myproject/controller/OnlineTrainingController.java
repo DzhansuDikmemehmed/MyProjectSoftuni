@@ -36,9 +36,9 @@ public class OnlineTrainingController {
     }
 
     @PostMapping("/add-onlineTraining")
-    public String createAppointment(@Valid AddOnlineTrainingDto addOnlineTrainingDto,
-                                    BindingResult bindingResult,
-                                    RedirectAttributes redirectAttributes){
+    public String createOnlineTraining(@Valid AddOnlineTrainingDto addOnlineTrainingDto,
+                                       BindingResult bindingResult,
+                                       RedirectAttributes redirectAttributes){
 
         if (bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("onlineTrainingData", addOnlineTrainingDto);
@@ -53,7 +53,7 @@ public class OnlineTrainingController {
     }
 
     @GetMapping("/online-allTrainings")
-    public String getAllAppointments(Model model){
+    public String getAllOnlineTrainings(Model model){
 
         model.addAttribute("allOnlineTrainings", onlineTrainingService.getAllOnlineTrainings());
 
