@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/css/styles/site.css">
+
+</head>
+<body class="login">
+<header>
+    <section th:replace="fragments/section-top-bar"></section>
+    <div th:replace="fragments/header"></div>
+</header>
+
+
+<div class="container-fluid">
+    <h5 class="text-center text-dark mt-5">
+        Ooops! Object with id
+        <th:block th:text="${objectId}">1</th:block>
+        was not found!
+
+    </h5>
+    <div class="text-center text-dark font-weight-bold mt-5">
+        We are sorry! Please navigate to <a th:href="@{/}">home page</a>!
+
+    </div>
+</div>
+
+<div>
+</div>
+
+</body>
+<footer th:replace="fragments/footer"></footer>
+</html>

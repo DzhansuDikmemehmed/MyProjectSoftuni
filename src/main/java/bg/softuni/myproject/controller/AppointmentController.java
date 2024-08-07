@@ -6,6 +6,7 @@ import bg.softuni.myproject.service.AppointmentService;
 import bg.softuni.myproject.service.UserService;
 import bg.softuni.myproject.service.dto.AddAppointmentDto;
 import bg.softuni.myproject.service.dto.DetailsAppointmentDto;
+import bg.softuni.myproject.service.exception.ObjectNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.lang.reflect.Type;
@@ -87,7 +89,14 @@ public class AppointmentController {
 
         return "details";
     }
-
+//    @ResponseStatus(code= HttpStatus.NOT_FOUND)
+//    @ExceptionHandler(ObjectNotFoundException.class)
+//    public ModelAndView handleObjectNotFound(ObjectNotFoundException onfe){
+//        ModelAndView modelAndView = new ModelAndView("appointment-not-found");
+//        modelAndView.addObject("appId", onfe.getId() );
+//
+//        return modelAndView;
+//    }
     @PostMapping("/appointments/register/{id}")
     public ResponseEntity<?> registerForAppointment(@PathVariable("id") Long id){
         Authentication authentication= SecurityContextHolder.getContext().getAuthentication();

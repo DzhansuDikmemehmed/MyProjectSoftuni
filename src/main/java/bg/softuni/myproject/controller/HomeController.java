@@ -2,6 +2,8 @@ package bg.softuni.myproject.controller;
 
 import bg.softuni.myproject.service.UserService;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +23,18 @@ private final UserService userService;
 //       return "";
 //
 //    }
-
+//@GetMapping("/")
+//public String home(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+//
+//    if (userDetails instanceof MobileleUserDetails) {
+//        MobileleUserDetails mobileleUserDetails = (MobileleUserDetails) userDetails;
+//        model.addAttribute("welcomeMessage", mobileleUserDetails.getFullName());
+//    } else {
+//        model.addAttribute("welcomeMessage", "Anonymous");
+//    }
+//
+//    return "index";
+//}
     @GetMapping("/about")
     public String viewAbout(){
         return "about";
@@ -32,13 +45,5 @@ private final UserService userService;
         model.addAttribute("profileData", userService.findUser());
         return "profile";
     }
-    @GetMapping("/demo")
-    public String viewProfile(){
-        return "demo";
-    }
 
-//    @GetMapping("/details")
-//    public String viewDetails(){
-//        return "details";
-//    }
 }

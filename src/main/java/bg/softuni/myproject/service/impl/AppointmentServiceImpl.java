@@ -14,8 +14,9 @@ import bg.softuni.myproject.service.ExRateService;
 import bg.softuni.myproject.service.dto.AddAppointmentDto;
 import bg.softuni.myproject.service.dto.AllAppointmentsDto;
 import bg.softuni.myproject.service.dto.DetailsAppointmentDto;
+import bg.softuni.myproject.service.exception.ObjectNotFoundException;
 import jakarta.transaction.Transactional;
-import org.hibernate.ObjectNotFoundException;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
