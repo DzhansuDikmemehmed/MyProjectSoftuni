@@ -3,7 +3,6 @@ package bg.softuni.myproject.web;
 import bg.softuni.myproject.model.entity.OnlineTrainingSession;
 import bg.softuni.myproject.model.entity.enums.TrainingType;
 import bg.softuni.myproject.repo.OnlineTrainingRepository;
-import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
-
+import static java.util.EnumSet.allOf;
+import static org.hamcrest.Matchers.hasProperty;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -26,10 +26,10 @@ public class OnlineTrainingControllerIT {
     @Autowired
     private OnlineTrainingRepository onlineTrainingRepository;
 
-    private Long trainingId;
-
     @BeforeEach
     public void setUp() {
+        onlineTrainingRepository.deleteAll(); // Clean up repository
+
         OnlineTrainingSession session = new OnlineTrainingSession()
                 .setCoachName("Test Coach")
                 .setTitle("Test Title")
@@ -39,7 +39,6 @@ public class OnlineTrainingControllerIT {
                 .setType(TrainingType.YOGA);
 
         onlineTrainingRepository.save(session);
-        trainingId = session.getId();
     }
 
     @Test
@@ -51,7 +50,6 @@ public class OnlineTrainingControllerIT {
                 .andExpect(model().attributeExists("allTrainingTypes"));
     }
 
-
     @Test
     @WithMockUser(username = "testUser", roles = "USER")
     void testGetAllOnlineTrainings() throws Exception {
@@ -61,4 +59,20 @@ public class OnlineTrainingControllerIT {
                 .andExpect(model().attributeExists("allOnlineTrainings"));
     }
 
+
+
+    @Test
+    @WithMockUser(username = "testUser", roles = "USER")
+    void testGetOnlineTrainingByCategory_InvalidCategory() throws Exception {
+        mockMvc.perform(get("/onlineTrainings/{category}", "INVALID_CATEGORY"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("error"))
+                .andExpect(model().attribute("errorMessage", "Invalid training category: INVALID_CATEGORY"));
+    }
+
 }
+
+
+
+
+

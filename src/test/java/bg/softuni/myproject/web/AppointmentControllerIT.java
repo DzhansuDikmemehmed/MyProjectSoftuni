@@ -120,5 +120,12 @@ public class AppointmentControllerIT {
                 .andExpect(model().attributeExists("allAppointments"));
     }
 
+    @Test
+    @WithMockUser(username = "testUser", roles = "USER")
+    void testAppointmentDetails() throws Exception {
+        mockMvc.perform(get("/appointments/" + appointmentId))
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("appointmentDetails"));
+    }
 
 }
