@@ -8,4 +8,5 @@ public interface UserAppointmentRepository extends JpaRepository<UserAppointment
     UserAppointment findByAppointmentIdAndUserId(Long appointmentId, Long userId);
 
 
+    void deleteByAppointmentId(long appointmentId);
 }

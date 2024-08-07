@@ -2,6 +2,7 @@ package bg.softuni.myproject.model.entity;
 
 import bg.softuni.myproject.model.entity.enums.UserRoles;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "roles")
@@ -11,8 +12,10 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotNull
+    @Column(unique = true)
     @Enumerated(EnumType.STRING)
-    private UserRoles name;
+    private UserRoles role;
 
     public Role() {
     }
@@ -26,12 +29,12 @@ public class Role {
         return this;
     }
 
-    public UserRoles getName() {
-        return name;
+    public UserRoles getRole() {
+        return role;
     }
 
-    public Role setName(UserRoles name) {
-        this.name = name;
+    public Role setRole(UserRoles name) {
+        this.role = name;
         return this;
     }
 }

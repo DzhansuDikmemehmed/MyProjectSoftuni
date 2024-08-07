@@ -14,6 +14,7 @@ import bg.softuni.myproject.service.ExRateService;
 import bg.softuni.myproject.service.dto.AddAppointmentDto;
 import bg.softuni.myproject.service.dto.AllAppointmentsDto;
 import bg.softuni.myproject.service.dto.DetailsAppointmentDto;
+import jakarta.transaction.Transactional;
 import org.hibernate.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -126,8 +127,11 @@ public class AppointmentServiceImpl implements AppointmentService {
         return false;
     }
 
+    @Transactional
     @Override
     public void deleteAppointment(long appointmentId) {
+
+        userAppointmentRepository.deleteByAppointmentId(appointmentId);
         appointmentRepository.deleteById(appointmentId);
     }
 

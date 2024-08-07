@@ -43,7 +43,7 @@ public class FitnessUserDetailsService implements UserDetailsService {
     private List<GrantedAuthority> mapToGrantedAuthorities(User user){
         return user
                 .getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName().name()))
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getRole().name()))
                 .collect(Collectors.toList());
     }
 

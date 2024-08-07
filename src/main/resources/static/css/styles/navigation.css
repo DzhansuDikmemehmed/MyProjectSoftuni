@@ -82,4 +82,22 @@
     vertical-align: middle; /* Align with text */
 }
 
+.dropdown-menu {
+    background-color: #333 !important;
+    border: 1px solid #444 !important;
+}
+
+.dropdown-item {
+    color: #fff !important;
+}
+
+.dropdown-item:hover {
+    background-color: #555 !important;
+    color: #fff !important;
+}
+
+.dropdown-menu .dropdown-divider {
+    background-color: #444 !important;
+}
+
 

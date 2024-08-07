@@ -13,7 +13,7 @@ spring:
         enabled: true
   sql:
     init:
-      mode: always
+      mode: never
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     username: ${db_username}
