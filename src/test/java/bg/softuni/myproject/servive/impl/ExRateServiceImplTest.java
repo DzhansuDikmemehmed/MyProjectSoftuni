@@ -3,6 +3,7 @@ package bg.softuni.myproject.servive.impl;
 import bg.softuni.myproject.config.ForexApiConfig;
 import bg.softuni.myproject.model.entity.ExRateEntity;
 import bg.softuni.myproject.repo.ExRateRepository;
+import bg.softuni.myproject.service.dto.ExRatesDto;
 import bg.softuni.myproject.service.exception.ApiObjectNotFoundException;
 import bg.softuni.myproject.service.impl.ExRateServiceImpl;
 import org.junit.jupiter.api.Assertions;
@@ -15,6 +16,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.when;
@@ -98,4 +101,21 @@ public class ExRateServiceImplTest {
         when(mockExRateRepository.count()).thenReturn(6L);
         Assertions.assertTrue(toTest.hasInitializedExRates());
     }
+    @Test
+    void testAllSupportedCurrencies() {
+        // Arrange
+        ExRateEntity entity1 = new ExRateEntity().setCurrency("USD");
+        ExRateEntity entity2 = new ExRateEntity().setCurrency("EUR");
+        ExRateEntity entity3 = new ExRateEntity().setCurrency("GBP");
+
+        when(mockExRateRepository.findAll()).thenReturn(Arrays.asList(entity1, entity2, entity3));
+
+        // Act
+        List<String> result = toTest.allSupportedCurrencies();
+
+        // Assert
+        List<String> expected = Arrays.asList("USD", "EUR", "GBP");
+        Assertions.assertEquals(expected, result);
+    }
+
 }
