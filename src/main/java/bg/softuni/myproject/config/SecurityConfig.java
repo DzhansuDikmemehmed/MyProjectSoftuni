@@ -1,6 +1,8 @@
 package bg.softuni.myproject.config;
 
 
+import bg.softuni.myproject.repo.UserRepository;
+import bg.softuni.myproject.service.impl.FitnessUserDetailsService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -55,4 +57,10 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder(){
         return  Pbkdf2PasswordEncoder.defaultsForSpringSecurity_v5_8();
     }
+
+@Bean
+    public FitnessUserDetailsService fitnessUserDetailsService(UserRepository userRepository){
+        return new FitnessUserDetailsService(userRepository);
+}
+
 }

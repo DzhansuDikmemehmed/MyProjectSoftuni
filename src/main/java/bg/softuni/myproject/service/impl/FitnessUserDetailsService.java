@@ -1,4 +1,4 @@
-package bg.softuni.myproject.service.session;
+package bg.softuni.myproject.service.impl;
 
 import bg.softuni.myproject.model.entity.User;
 import bg.softuni.myproject.repo.UserRepository;
@@ -17,18 +17,18 @@ import java.util.stream.Collectors;
 public class FitnessUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
-    private final ModelMapper modelMapper;
 
-    public FitnessUserDetailsService(UserRepository userRepository, ModelMapper modelMapper) {
+
+    public FitnessUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.modelMapper = modelMapper;
+
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username)
                 .map(this::mapToUSerDetails)
-                .orElseThrow(()-> new UsernameNotFoundException("User with username " + username + " not foun!"));
+                .orElseThrow(()-> new UsernameNotFoundException("User with username " + username + " not found!"));
     }
 
     private UserDetails mapToUSerDetails(User user) {

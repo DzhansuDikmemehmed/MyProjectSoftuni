@@ -3,7 +3,9 @@ package bg.softuni.myproject.model.entity;
 import bg.softuni.myproject.model.entity.enums.Level;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -27,13 +29,13 @@ public class User {
     private String username;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles;
+    private List<Role> roles;
 
     private String description;
 
     private String imageUrl;
     public User() {
-        this.roles = new HashSet<>();
+        this.roles = new ArrayList<>();
     }
 
     public String getImageUrl() {
@@ -117,11 +119,11 @@ public class User {
         return this;
     }
 
-    public Set<Role> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public User setRoles(Set<Role> roles) {
+    public User setRoles(List<Role> roles) {
         this.roles = roles;
         return this;
     }
